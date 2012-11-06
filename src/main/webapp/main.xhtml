@@ -114,19 +114,19 @@
 <!--</header>-->
 
 <!--<div id="content" role="main" class="grid_24 clearfix">-->
-<tr:form id="headerForm" inlineStyle="width: 100%">
+<tr:form id="headerForm" inlineStyle="padding-left:10px; padding-right: 10px;">
 <trh:tableLayout inlineStyle="#{backImage}" width="100%">
     <trh:rowLayout width="100%">
-        <trh:cellFormat inlineStyle="width: 100px">
+        <trh:cellFormat inlineStyle="width: 120px">
             <tr:commandLink id="titleLink"
                             onclick="queryTxt = document.getElementById('queryTxt'); queryTxt.value = ''; queryTxt.focus()"
                             action="#{searchBean.doNewBinarySearch}"
                     >
-                <tr:image source="#{config.logoUrl}" rendered="#{not empty config.logoUrl}" inlineStyle="width: 100px"/>
+                <tr:image source="#{config.logoUrl}" rendered="#{not empty config.logoUrl}" inlineStyle="width: 120px"/>
             </tr:commandLink>
         </trh:cellFormat>
-        <tr:spacer width="2px"/>
-        <trh:cellFormat inlineStyle="vertical-align: bottom" rendered="#{not empty config.title}">
+        <tr:spacer width="1px"/>
+        <trh:cellFormat inlineStyle="vertical-align: middle" rendered="#{not empty config.title}">
             <h1><tr:outputText value="#{config.title}"/></h1>
         </trh:cellFormat>
     </trh:rowLayout>
