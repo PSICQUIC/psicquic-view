@@ -18,7 +18,7 @@ import java.util.concurrent.Executors;
 public class PsicquicThreadConfig implements InitializingBean, DisposableBean {
 
     private ExecutorService executorService;
-    private int maxNumberThreads = 250;
+    private int maxNumberThreads = 100;
 
     public PsicquicThreadConfig(){
     }
