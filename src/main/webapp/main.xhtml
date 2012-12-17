@@ -264,8 +264,7 @@
                     </c:forEach>
                 </tr:panelFormLayout>
             </td>
-            <td style="vertical-align: middle; text-align: center">
-                <!--Download All Button-->
+            <!--<td style="vertical-align: middle; text-align: center">
                 <tr:commandButton id="downloadAllButtonMain"
                                   shortDesc="This button will is enable with less than 300.000 interactions"
                                   action="dialog:download.all"
@@ -275,7 +274,7 @@
                                   returnListener="#{downloadAllController.forward}"
                                   disabled="#{searchBean.totalResults lt 0 or searchBean.totalResults gt 300000 or searchBean.clusterSelected}"
                                   text="Download All"/>
-            </td>
+            </td>-->
             <td style="vertical-align: middle; text-align: center">
                 <!--Cluster Button-->
                 <tr:panelFormLayout rows="2" maxColumns="1">
