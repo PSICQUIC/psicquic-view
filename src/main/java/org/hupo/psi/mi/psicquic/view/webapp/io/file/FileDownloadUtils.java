@@ -108,6 +108,6 @@ public class FileDownloadUtils extends DownloadUtils {
 		extensionByFormat.put(PsicquicSimpleClient.RDF_N3, TXT);
 		extensionByFormat.put(PsicquicSimpleClient.RDF_TURTLE, TXT);
 		extensionByFormat.put(PsicquicSimpleClient.COUNT, TXT);
-        contentTypeByFormat.put("tab25-bin", TXT);
+        extensionByFormat.put("tab25-bin", TXT);
 	}
 }
