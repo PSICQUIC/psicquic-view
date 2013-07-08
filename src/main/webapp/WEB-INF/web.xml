@@ -22,6 +22,8 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 	      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0" metadata-complete="true">
+
+
     <!-- MyFaces -->
 
     <!--<context-param>-->
@@ -204,7 +206,7 @@
             is deployed
         </description>
         <param-name>org.apache.myfaces.trinidad.CHECK_FILE_MODIFICATION</param-name>
-        <param-value>${debug}</param-value>
+        <param-value>false</param-value>
     </context-param>
 
     <context-param>
@@ -240,7 +242,7 @@
             automatic compression of style class names.
         </description>
         <param-name>org.apache.myfaces.trinidad.DISABLE_CONTENT_COMPRESSION</param-name>
-        <param-value>${debug}</param-value>
+        <param-value>false</param-value>
     </context-param>
 
     <context-param>
