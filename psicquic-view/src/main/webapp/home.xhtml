@@ -11,13 +11,13 @@
                 template="WEB-INF/facelets/layout/compliance-template-ebi.xhtml">
 
     <!-- Mandatorty params -->
-    <ui:param name="sectionTitle" value="Browse"/>
+    <ui:param name="sectionTitle" value="Input Form"/>
 
     <ui:define name="windowTitle">
         <tr:outputText value="#{config.title}"/>
     </ui:define>
 
     <ui:define name="content">
-        <ui:include src="pages/content.xhtml"/>
+        <ui:include src="pages/form_content.xhtml"/>
     </ui:define>
 </ui:composition>

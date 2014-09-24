@@ -144,3 +144,31 @@ div#local-masthead {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#57A7A7', EndColorStr='#0A4F4F');
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#57A7A7', EndColorStr='#0A4F4F')"; /* IE8*/
 }
+
+#mainForm table, #mainForm td, #mainForm th {
+    border-style: none;
+    background-color: #f7f7f7;
+    border-spacing: 0;
+    border-collapse: collapse;
+    padding: 0px;
+    margin: 0px;
+}
+
+td.af_selectOneChoice_label{
+    padding: 0px;
+}
+
+ul.statusMenu {
+    list-style-type: none;
+}
+
+#servicesTable table, #servicesTable td, #servicesTable th{
+    border-style: none;
+    background-color: white;
+    border-spacing: 0;
+    border-collapse: collapse;
+    padding: 1px;
+    margin: 1px;
+    text-align: left;
+    vertical-align: text-top;
+}
