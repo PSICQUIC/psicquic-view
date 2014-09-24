@@ -172,3 +172,12 @@ ul.statusMenu {
     text-align: left;
     vertical-align: text-top;
 }
+
+#serviceForm table, #mainForm td, #mainForm th {
+    border-style: none;
+    background-color: white;
+    border-spacing: 0;
+    border-collapse: collapse;
+    padding: 0px;
+    margin: 0px;
+}
