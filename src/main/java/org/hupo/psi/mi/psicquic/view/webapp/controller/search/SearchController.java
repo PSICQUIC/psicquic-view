@@ -41,7 +41,7 @@ import java.util.List;
 @Controller("searchBean")
 @Scope("conversation.access")
 @ConversationName("general")
-@ViewController(viewIds = {"/main.xhtml"})
+@ViewController(viewIds = {"/main.xhtml", "/home.xhtml"})
 public class SearchController extends BaseController {
 
     private static final Log log = LogFactory.getLog(SearchController.class);
@@ -196,7 +196,7 @@ public class SearchController extends BaseController {
             clusteringController.doClusteredJobBinarySearch(searchQuery);
         }
 
-        return "interactions";
+        return "results";
     }
 
     private void processExcludedServices(String excludedServicesParam) {
@@ -316,4 +316,7 @@ public class SearchController extends BaseController {
         this.applicationContext = applicationContext;
     }
 
+    public List<QueryHits> getServices() {
+        return servicesController.getServices();
+    }
 }

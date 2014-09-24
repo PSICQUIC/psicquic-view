@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:t="http://myfaces.apache.org/tomahawk"
+                xmlns:tr="http://myfaces.apache.org/trinidad"
+                xmlns:trh="http://myfaces.apache.org/trinidad/html"
+                xmlns:c="http://java.sun.com/jstl/core"
+                xmlns:psv="http://psicquic.mi.psi.hupo.org/view"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+                xmlns:ebi="http://ebi.ac.uk/faces/components"
+                xmlns:ebisf="http://www.ebi.ac.uk/faces/site">
+
+<section class="grid_24">
+<tr:form id="mainForm">
+
+    <!-- To avoid expired sessions, poll every 15 mins -->
+    <tr:poll id="expiredSessions" interval="#{15*60*1000}"/>
+
+    <div class="grid_18">
+        <ui:include src="/pages/search/search_panel.xhtml"/>
+    </div>
+    <div class="grid_18">
+        <h:panelGroup id="searchTips">
+            <h4>Some clues to start:</h4>
+            <ul>
+                <li>Use the check boxes to include or exclude services from the search and cluster operations.
+                    <h:panelGroup>
+                        <tr:outputText
+                                value=" Select: "/>
+                        <tr:commandLink id="selectAllLink" text="All"
+                                        onclick="psicquic_selectAll(#{fn:length(servicesTable.services)})"
+                                />
+                        <tr:outputText value=", "/>
+                        <tr:commandLink id="selectNoneLink" text="None"
+                                        onclick="psicquic_selectNone(#{fn:length(servicesTable.services)})"/>
+                    </h:panelGroup>
+                </li>
+                <li>The numbers show the interactions retrieved in the last query.</li>
+                <li>Click on the links below to display the results for each selected service.</li>
+                <li>The cluster will be enabled with less than #{config.clusteringSizeLimit} interactions.</li>
+
+            </ul>
+        </h:panelGroup>
+    </div>
+    <div class="grid_6">
+        <h4>Status of the service</h4>
+        <ui:include src="search/legend.xhtml"/>
+    </div>
+
+    <section class="grid_18">
+        <tr:panelFormLayout id="servicesTable" rows="#{config.serviceRows}" maxColumns="4" inlineStyle="width: 100%">
+            <c:forEach var="service" items="${searchBean.services}" varStatus="status">
+                <tr:panelHorizontalLayout>
+
+                    <tr:panelPopup id="servicePopUp_${status.index}" triggerType="hover" position="relative"
+                                   icon="/images/magnify.png">
+                        <tr:outputText value="Service content: "/>
+                        <tr:panelList listStyle="list-style-type:square">
+                            <c:forEach var="tag" items="${service.tags}" >
+                                <h:outputText value="#{psv:cvTermToName(tag)}"/>
+                            </c:forEach>
+
+                        </tr:panelList>
+                    </tr:panelPopup>
+
+                    <h:graphicImage id="serviceStatusOff_${status.index}"
+                                    alt="Status: OFFLINE" title="Status: OFFLINE"
+                                    url="/images/greyLight.png"
+                                    rendered="#{not service.active}"/>
+                    <h:graphicImage id="serviceStatusOn_${status.index}"
+                                    alt="Status: ONLINE" title="Status: ONLINE"
+                                    url="/images/greenLight.png"
+                                    rendered="#{service.active and not (service.hits lt 0)}"/>
+                    <h:graphicImage id="serviceStatusWarn_${status.index}"
+                                    alt="Status: WARNING"
+                                    title="Status: WARNING - This service can not respond to the query"
+                                    url="/images/orangeLight.png"
+                                    rendered="#{service.active and (service.hits == -1)}"/>
+                    <h:graphicImage id="serviceStatusErr_${status.index}"
+                                    alt="Status: ERROR"
+                                    title="Status: ERROR - This service has an unexpected error"
+                                    url="/images/redLight.png"
+                                    rendered="#{service.active and (service.hits == -2)}"/>
+
+
+                    <h:selectBooleanCheckbox id="serviceSel_${status.index}"
+                                             value="#{service.checked}"
+                                             disabled="#{not service.active}"
+                                             immediate="true"/>
+
+                    <h:outputText id="serviceLink_${status.index}" value="#{service.name}"
+                                   styleClass="#{searchBean.selectedService == service ? 'resultLink-selected' : ''}"
+                                   style="#{searchBean.selectedService == service ? 'font-weight:bold; text-decoration: none; color: red' : ''}"/>
+                    <tr:spacer width="2px"/>
+
+                    <h:outputLink id="serviceURL_${status.index}"
+                                  value="#{service.organizationUrl}" target="_blank">
+                        <tr:image source="/images/external_link.gif"
+                                  shortDesc="Organization URL"/>
+                    </h:outputLink>
+                    <tr:spacer width="2px"/>
+                    <!--separator-->
+                    <tr:outputText value="Timed out"
+                                   rendered="#{service.hits eq -1}"/>
+                    <tr:outputText value="Error"
+                                   rendered="#{service.hits eq -2}"/>
+
+                    <tr:spacer width="5px"/>
+
+                    <tr:spacer width="20px"/>
+
+                </tr:panelHorizontalLayout>
+            </c:forEach>
+        </tr:panelFormLayout>
+
+    </section>
+</tr:form>
+</section>
+</ui:composition>

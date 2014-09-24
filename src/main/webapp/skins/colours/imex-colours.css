@@ -126,6 +126,34 @@ div#local-masthead {
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#C8C8C8', EndColorStr='#909090')";
 }
 
+#mainForm table, #mainForm td, #mainForm th {
+    border-style: none;
+    background-color: #f7f7f7;
+    border-spacing: 0;
+    border-collapse: collapse;
+    padding: 0px;
+    margin: 0px;
+}
+
+td.af_selectOneChoice_label{
+    padding: 0px;
+}
+
+ul.statusMenu {
+    list-style-type: none;
+}
+
+#servicesTable table, #servicesTable td, #servicesTable th{
+    border-style: none;
+    background-color: white;
+    border-spacing: 0;
+    border-collapse: collapse;
+    padding: 1px;
+    margin: 1px;
+    text-align: left;
+    vertical-align: text-top;
+}
+
 /* Colour the faux-underline for local menu items */
 /*div#local-masthead ul li a:hover,*/
 /*div#local-masthead ul li a:focus,*/

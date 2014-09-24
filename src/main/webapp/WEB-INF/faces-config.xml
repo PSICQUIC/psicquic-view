@@ -20,6 +20,10 @@
             <base-name>org.hupo.psi.mi.psicquic.Messages</base-name>
             <var>messages</var>
         </resource-bundle>
+        <resource-bundle>
+            <base-name>org.hupo.psi.mi.psicquic.binarysearch.BuildInfo</base-name>
+            <var>buildInfo</var>
+        </resource-bundle>
     </application>
 
     <managed-bean>
@@ -40,6 +44,24 @@
         <navigation-case>
             <from-outcome>main</from-outcome>
             <to-view-id>/main.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>results</from-outcome>
+            <to-view-id>/results.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>help</from-outcome>
+            <to-view-id>/help.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
