@@ -154,6 +154,15 @@ ul.statusMenu {
     vertical-align: text-top;
 }
 
+#serviceForm table, #mainForm td, #mainForm th {
+    border-style: none;
+    background-color: white;
+    border-spacing: 0;
+    border-collapse: collapse;
+    padding: 0px;
+    margin: 0px;
+}
+
 /* Colour the faux-underline for local menu items */
 /*div#local-masthead ul li a:hover,*/
 /*div#local-masthead ul li a:focus,*/
