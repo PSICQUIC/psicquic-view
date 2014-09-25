@@ -196,6 +196,30 @@ ul.statusMenu {
     font-weight: bold;
 }
 
+#interactionResults th.af_column_header-text{
+    background-color: #57A7A7;
+}
+
+#interactionResults table {
+    background-color: white;
+    border: 5px solid #f1f1f1;
+    border-collapse: collapse;
+    margin: 9px auto;
+    width: 99%;
+    padding: 1px;
+}
+
+#interactionResults th, #interactionResults tr, #interactionResults td {
+    background-color: white;
+    border: 1px solid #f1f1f1;
+    border-collapse: collapse;
+    margin: 9px auto;
+    width: 99%;
+    border-color: #f1f1f1;
+    padding: 1px;
+    border-style: solid;
+}
+
 /* Colour the faux-underline for local menu items */
 /*div#local-masthead ul li a:hover,*/
 /*div#local-masthead ul li a:focus,*/
