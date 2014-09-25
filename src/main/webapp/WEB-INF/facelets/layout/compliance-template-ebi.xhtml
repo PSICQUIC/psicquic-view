@@ -210,9 +210,15 @@
             <div class="grid_18 alpha">
                 <nav id="breadcrumb">
                     <p>
-                        <h:outputLink value="home.xhtml" rendered="#{sectionTitle ne 'Input Form'}">Input Form</h:outputLink>
-                        <h:outputLink value="main.xhtml" rendered="#{sectionTitle eq 'Clustered Results'}"> &gt; Search Results</h:outputLink>
-                        <h:outputText value=" &gt; #{sectionTitle}" rendered="#{sectionTitle ne 'Input Form'}"/>
+                        <h:outputLink value="home.xhtml" rendered="#{sectionTitle ne 'Input Form' and sectionTitle ne 'Clustered Results'}">Input Form</h:outputLink>
+                        <h:form id="clusterNav" rendered="#{sectionTitle eq 'Clustered Results'}">
+                            <h:commandLink action="#{clusteringBean.unselectClusterJobAndGoToInputForm}"
+                                           value="Input Form" style="font-family: Verdana,sans-serif;"/>
+                            <h:commandLink action="#{clusteringBean.unselectClusterJob}"
+                                           value=" &gt; Search Results" style="font-family: Verdana,sans-serif;"/>
+                            <h:outputText value=" &gt; #{sectionTitle}" rendered="#{sectionTitle ne 'Input Form'}" style="font-family: Verdana,sans-serif;"/>
+                        </h:form>
+                        <h:outputText value=" &gt; #{sectionTitle}" rendered="#{sectionTitle ne 'Input Form' and sectionTitle ne 'Clustered Results'}"/>
                     </p>
                 </nav>
             </div>

@@ -271,6 +271,13 @@ public class ClusteringController extends BaseController {
         return searchController.doNewBinarySearch();
     }
 
+    public String unselectClusterJobAndGoToInputForm() {
+        clusterSelected = false;
+        job = null;
+        searchController.doNewBinarySearch();
+        return "home";
+    }
+
     public void setTotalResults(int totalResults) {
         this.totalResults = totalResults;
     }

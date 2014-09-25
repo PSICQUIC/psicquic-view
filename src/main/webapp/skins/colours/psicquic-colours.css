@@ -239,3 +239,7 @@ ul.statusMenu {
     margin: 0px;
 }
 
+#clusterNav form a.OraLink{
+    font-family: Verdana,sans-serif;
+}
+
