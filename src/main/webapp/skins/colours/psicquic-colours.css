@@ -243,3 +243,7 @@ ul.statusMenu {
     font-family: Verdana,sans-serif;
 }
 
+#serviceForm table.af_panelTabbed_orientation-top{
+    background-color: #57A7A7;
+}
+
