@@ -12,7 +12,7 @@
                 xmlns:ebi="http://ebi.ac.uk/faces/components"
                 xmlns:ebisf="http://www.ebi.ac.uk/faces/site">
 
-<section class="grid_24">
+<section id="search-results" class="grid_24">
 <h2>
     <strong><h:outputText value="#{searchBean.totalResults}">
         <f:convertNumber pattern="#,###"/>
@@ -20,7 +20,8 @@
     for search term <span class="searchterm" id="query"><h:outputText value="#{userQuery.searchQuery}"/></span>
 
 </h2>
-<tr:form id="serviceForm" inlineStyle="background-color: white">
+
+<tr:form id="serviceForm">
 
 
 <table style="width:100%; height: 200px">
@@ -28,16 +29,6 @@
 <tr style="width:100%">
 <td style="vertical-align: top;">
     <!--Services-->
-
-    <tr:panelHorizontalLayout rendered="#{searchBean.totalResults == 0}">
-        <!--TODO-->
-        <h:outputText style="color: red; font-weight: bold"
-                      value="No results were found for this query#{servicesTable.selectedServicesCount lt servicesTable.activeServicesCount ? ' for the selected services' : ''}."
-                      rendered="#{servicesTable.selectedServicesCount != 0}"/>
-        <h:outputText style="color: red; font-weight: bold"
-                      value="Select at least one service from the list below!"
-                      rendered="#{servicesTable.selectedServicesCount == 0}"/>
-    </tr:panelHorizontalLayout>
 
     <tr:spacer height="16px"/>
     <tr:panelGroupLayout layout="vertical">
@@ -301,7 +292,6 @@
 
 </tr:panelGroupLayout>
 
-
 <c:forEach var="service" items="${servicesTable.services}" varStatus="forStatus">
     <tr:panelGroupLayout id="serviceTable_${forStatus.index}" rendered="#{searchBean.selectedService == service}"
                          partialTriggers="servicesTable">
@@ -312,7 +302,7 @@
         </ui:include>
     </tr:panelGroupLayout>
 </c:forEach>
-
 </tr:form>
+
 </section>
 </ui:composition>
