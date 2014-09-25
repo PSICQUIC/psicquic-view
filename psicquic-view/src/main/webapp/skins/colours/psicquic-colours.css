@@ -173,7 +173,7 @@ ul.statusMenu {
     vertical-align: text-top;
 }
 
-#serviceForm table, #mainForm td, #mainForm th {
+#serviceForm table, #serviceForm td, #serviceForm th, #serviceForm tr {
     border-style: none;
     background-color: white;
     border-spacing: 0;
@@ -181,3 +181,4 @@ ul.statusMenu {
     padding: 0px;
     margin: 0px;
 }
+
