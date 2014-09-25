@@ -41,7 +41,7 @@ import java.util.List;
 @Controller("searchBean")
 @Scope("conversation.access")
 @ConversationName("general")
-@ViewController(viewIds = {"/main.xhtml", "/home.xhtml"})
+@ViewController(viewIds = {"/main.xhtml", "/home.xhtml", "/clustered.xhtml"})
 public class SearchController extends BaseController {
 
     private static final Log log = LogFactory.getLog(SearchController.class);
