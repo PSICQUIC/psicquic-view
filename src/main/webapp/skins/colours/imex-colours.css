@@ -167,9 +167,33 @@ ul.statusMenu {
     border-style: none;
     background-color: white;
     border-spacing: 0;
-    border-collapse: collapse;
+    border-collapse: separate;
     padding: 0px;
     margin: 0px;
+}
+
+#serviceForm .af_panelPopup_content {
+    background: url("http://www.ebi.ac.uk/inc/images/head_blue3b.gif?conversationContext=1") repeat-x scroll right top transparent;
+    border: 0 none;
+    padding: 5px;
+    vertical-align: top;
+}
+
+#mainForm .af_panelPopup_content {
+    background: url("http://www.ebi.ac.uk/inc/images/head_blue3b.gif?conversationContext=1") repeat-x scroll right top transparent;
+    border: 0 none;
+    padding: 5px;
+    vertical-align: top;
+}
+
+#jobListBox table, #jobListBox td, #jobListBox th, #jobListBox tr{
+    background-color: #EDF6F5;
+    border: 1px;
+    padding: 1px;
+}
+
+#jobListBox td.af_panelBox_header{
+    font-weight: bold;
 }
 
 /* Colour the faux-underline for local menu items */

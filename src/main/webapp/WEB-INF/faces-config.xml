@@ -60,6 +60,15 @@
     <navigation-rule>
         <from-view-id>*</from-view-id>
         <navigation-case>
+            <from-outcome>clustered</from-outcome>
+            <to-view-id>/clustered.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
             <from-outcome>help</from-outcome>
             <to-view-id>/help.xhtml</to-view-id>
             <redirect/>
