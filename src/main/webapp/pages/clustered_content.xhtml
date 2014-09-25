@@ -28,33 +28,6 @@
         <tr:panelGroupLayout id="clusterTable">
             <tr:outputText value="#{searchBean.selectedService.name}" inlineStyle="font-weight:bold; font-size:16px"/>
             <tr:separator/>
-            <tr:panelGroupLayout layout="horizontal" id="clusterTable_${searchBean.totalResults}"
-                                 partialTriggers="clusterTable">
-                <tr:group>
-                    <tr:outputText id="clusterResultsMsg" value="The query "/>
-                    <tr:outputText value="[#{userQuery.searchQuery}]" inlineStyle="font-weight: bold;"/>
-                    <tr:outputText value=" contains a total of "/>
-                    <tr:outputText id="clusterTotalResults" value="#{searchBean.totalResults}"
-                                   inlineStyle="font-weight: bold;">
-                        <tr:convertNumber pattern="#,###"/>
-                    </tr:outputText>
-                    <tr:outputText
-                            value="#{clusteringBean.clusterSelected ? ' clustered' : ' '} binary interactions."/>
-                </tr:group>
-
-                <tr:group>
-                    <table>
-                        <tr>
-                            <td style="vertical-align: middle"><tr:image source="/images/back_arrow.gif"/></td>
-                            <td style="vertical-align: middle"><tr:commandLink action="#{clusteringBean.unselectClusterJob}"
-                                                                               text="Back to all services"/>
-                            </td>
-                        </tr>
-                    </table>
-                </tr:group>
-
-            </tr:panelGroupLayout>
-            <tr:separator/>
 
             <ui:include src="tabs/tabs.xhtml">
                 <ui:param name="service" value="${searchBean.selectedService}"/>
