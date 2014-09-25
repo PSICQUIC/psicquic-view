@@ -98,6 +98,7 @@ public class SearchController extends BaseController {
         // TODO add new param 'clusterJobId' that can be combined with parameter 'query'
 
         FacesContext context = FacesContext.getCurrentInstance();
+        clusteringController.setClusterSelected(false);
 
         String statusParam = context.getExternalContext().getRequestParameterMap().get("status");
 
@@ -190,11 +191,16 @@ public class SearchController extends BaseController {
 
         String searchQuery = userQuery.getSearchQuery();
 
-        if (!clusteringController.isClusterSelected()) {
-            servicesController.doPsicquicBinarySearch(searchQuery);
-        } else {
-            clusteringController.doClusteredJobBinarySearch(searchQuery);
-        }
+        servicesController.doPsicquicBinarySearch(searchQuery);
+
+        return "results";
+    }
+
+    public String doNewBClusteredSearch() {
+
+        String searchQuery = userQuery.getSearchQuery();
+
+        clusteringController.doClusteredJobBinarySearch(searchQuery);
 
         return "results";
     }

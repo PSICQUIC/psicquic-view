@@ -211,6 +211,7 @@
                 <nav id="breadcrumb">
                     <p>
                         <h:outputLink value="home.xhtml" rendered="#{sectionTitle ne 'Input Form'}">Input Form</h:outputLink>
+                        <h:outputLink value="main.xhtml" rendered="#{sectionTitle eq 'Clustered Results'}"> &gt; Search Results</h:outputLink>
                         <h:outputText value=" &gt; #{sectionTitle}" rendered="#{sectionTitle ne 'Input Form'}"/>
                     </p>
                 </nav>
