@@ -105,6 +105,9 @@
         </div>
 
         <div id="local-masthead" class="masthead grid_24 nomenu">
+            <tr:panelGroupLayout>
+                <h:messages id="globalErrorMsg"/>
+            </tr:panelGroupLayout>
 
             <!-- local-title -->
             <!-- NB: for additional title style patterns, see http://frontier.ebi.ac.uk/web/style/patterns -->
@@ -134,7 +137,10 @@
             <!-- local-search -->
             <!-- NB: if you do not have a local-search, delete the following div, and drop the class="grid_12 alpha" class from local-title above -->
             <h:panelGroup style="#{sectionTitle eq 'Input Form' ? 'visibility: hidden;' : ''}">
+
                 <div class="grid_12 omega">
+                    <h:form id="local-search" prependId="false">
+                    </h:form>
                     <h:form id="local-search" prependId="false">
 
                         <fieldset>
@@ -172,6 +178,7 @@
                         </fieldset>
 
                     </h:form>
+
                 </div>
 
             </h:panelGroup>
@@ -219,10 +226,6 @@
         </div>
 
         <div class="grid_24">
-
-            <tr:panelGroupLayout>
-                <h:messages id="globalErrorMsg"/>
-            </tr:panelGroupLayout>
 
             <!--Place for the content in the template-->
             <ui:insert name="content"/>
