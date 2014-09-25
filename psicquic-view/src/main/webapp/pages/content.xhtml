@@ -142,14 +142,14 @@
                             <tr:panelGroupLayout>
                                 <!-- Refresh the clustering status message every 5 secs when there are jobs to be displayed -->
                                 <tr:panelGroupLayout partialTriggers="clusterButton">
-                                    <tr:panelGroupLayout rendered="#{not clusteringBean.clusterSelected and userClusteringJobs.jobCount gt 0}">
+                                    <tr:panelGroupLayout rendered="#{userClusteringJobs.jobCount gt 0}">
                                         <tr:poll id="clusteringStatus" interval="5000"/>
                                     </tr:panelGroupLayout>
                                 </tr:panelGroupLayout>
 
                                 <tr:panelBox id="jobListBox" text=" Status of your cluster queries" background="light"
                                              icon="/images/li.gif"
-                                             rendered="#{userClusteringJobs.jobCount gt 0 and not clusteringBean.clusterSelected}"
+                                             rendered="#{userClusteringJobs.jobCount gt 0}"
                                              partialTriggers="clusteringStatus">
 
                                     <tr:table value="#{userClusteringJobs.refreshedJobs}" var="job">

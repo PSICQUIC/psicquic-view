@@ -23,7 +23,7 @@
 
 <tr:form id="clusteredForm">
 
-<tr:group rendered="#{searchBean.totalResults gt 0 and clusteringBean.clusterSelected}">
+<tr:group rendered="#{searchBean.totalResults gt 0}">
     <section class="grid_20">
         <tr:panelGroupLayout id="clusterTable">
             <tr:outputText value="#{searchBean.selectedService.name}" inlineStyle="font-weight:bold; font-size:16px"/>
