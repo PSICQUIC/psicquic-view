@@ -115,7 +115,7 @@ public class ClusteringController extends BaseController {
             log.info( "No interaction to be clustered !!" );
         }
 
-        return "interactions";
+        return "results";
     }
 
     private void generateMitabUrl(QueryHits service) {
@@ -150,7 +150,7 @@ public class ClusteringController extends BaseController {
             log.error( msg, e );
         }
 
-        return "interactions";
+        return "clustered";
     }
 
     public String removeJob() {
@@ -173,7 +173,7 @@ public class ClusteringController extends BaseController {
             log.error( "Could not find job by job id in the current jobs: " + jobId );
         }
 
-        return "interactions";
+        return "results";
     }
 
     public String getClusterButtonHelpMessage() {

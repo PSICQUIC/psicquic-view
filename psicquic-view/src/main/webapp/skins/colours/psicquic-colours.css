@@ -230,3 +230,12 @@ ul.statusMenu {
     border-style: solid;
 }
 
+#clusteredForm table, #clusteredForm td, #clusteredForm th, #clusteredForm tr {
+    border-style: none;
+    background-color: white;
+    border-spacing: 0;
+    border-collapse: separate;
+    padding: 0px;
+    margin: 0px;
+}
+
