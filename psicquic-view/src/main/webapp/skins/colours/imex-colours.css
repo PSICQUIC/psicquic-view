@@ -220,6 +220,10 @@ ul.statusMenu {
     margin: 0px;
 }
 
+#clusterNav form a.OraLink{
+    font-family: Verdana,sans-serif;
+}
+
 /* Colour the faux-underline for local menu items */
 /*div#local-masthead ul li a:hover,*/
 /*div#local-masthead ul li a:focus,*/
