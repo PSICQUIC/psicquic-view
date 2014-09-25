@@ -12,25 +12,25 @@
                           cols="50" value="#{userQuery.searchQuery}"
                           rows="#{(fn:length(userQuery.searchQuery) / 60) + 1}"
                           onkeypress="return submitEnter('quickSearchBtn',event)"
-                          disabled="#{userQuery.showNewFieldPanel or clusteringBean.clusterSelected}"
+                          disabled="#{userQuery.showNewFieldPanel}"
                           />
             &#160;
             <h:commandButton id="quickSearchBtn"
                               value="Search"
                               action="#{searchBean.doNewBinarySearch}"
-                              disabled="#{userQuery.showNewFieldPanel or clusteringBean.clusterSelected}"
+                              disabled="#{userQuery.showNewFieldPanel}"
                               styleClass="submit"
                               style="display: inline"/>
             &#160;
             <h:commandButton value="Reset All"
                               onclick="queryTxt = document.getElementById('queryTxt'); queryTxt.value = ''; queryTxt.focus()"
-                              disabled="#{userQuery.showNewFieldPanel or clusteringBean.clusterSelected}"
+                              disabled="#{userQuery.showNewFieldPanel}"
                               action="#{searchBean.refresh}"/>
             &#160;
             <tr:commandLink id="addFieldBtn" text="Fields »"
                             inlineStyle="font-weight:bold"
                             actionListener="#{userQuery.doShowAddFieldPanel}"
-                            disabled="#{userQuery.showNewFieldPanel or clusteringBean.clusterSelected}"
+                            disabled="#{userQuery.showNewFieldPanel}"
                             />
         </h:panelGroup>
         <br/>
