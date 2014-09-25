@@ -139,8 +139,7 @@
             <h:panelGroup style="#{sectionTitle eq 'Input Form' ? 'visibility: hidden;' : ''}">
 
                 <div class="grid_12 omega">
-                    <h:form id="local-search" prependId="false">
-                    </h:form>
+                    <h:form id="local-search" prependId="false"/>
                     <h:form id="local-search" prependId="false">
 
                         <fieldset>
@@ -152,18 +151,11 @@
                                 <!--&lt;!&ndash; Include some example searchterms - keep them short and few! &ndash;&gt;-->
                                 <ot:separateConversationContext>
         <span class="examples">Examples:
-            <h:commandLink id="example-1" value="BRCA2" action="results">
-                <f:param name="query" value="BRCA2"/>
-            </h:commandLink>,
-            <h:commandLink id="example-2" value="Q06609" action="results">
-                <f:param name="query" value="Q06609" />
-            </h:commandLink>,
-            <h:commandLink id="example-3" value="dmc1" action="results">
-                <f:param name="query" value="dmc1" />
-            </h:commandLink>,
-            <h:commandLink id="example-4" value="10831611" action="results">
-                <f:param name="query" value="10831611" />
-            </h:commandLink></span>
+            <h:outputLink value="main.xhtml?query=BRCA2">BRCA2</h:outputLink>,
+            <h:outputLink value="main.xhtml?query=Q06609">Q06609</h:outputLink>,
+            <h:outputLink value="main.xhtml?query=dmc1">dmc1</h:outputLink>,
+            <h:outputLink value="main.xhtml?query=10831611">10831611</h:outputLink>
+            </span>
                                 </ot:separateConversationContext>
                             </div>
 
