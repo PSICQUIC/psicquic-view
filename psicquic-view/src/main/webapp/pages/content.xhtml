@@ -188,8 +188,7 @@
             <c:forEach var="service" items="${servicesTable.services}" varStatus="forStatus">
                 <tr:panelGroupLayout id="serviceTable_${forStatus.index}" rendered="#{searchBean.selectedService == service}"
                                      partialTriggers="servicesTable">
-                    <tr:outputText value="#{service.name}" inlineStyle="font-weight:bold; font-size:16px"/>
-                    <tr:separator/>
+                    <h2>#{service.name}</h2>
                     <ui:include src="tabs/tabs.xhtml">
                         <ui:param name="service" value="${searchBean.selectedService}"/>
                     </ui:include>
