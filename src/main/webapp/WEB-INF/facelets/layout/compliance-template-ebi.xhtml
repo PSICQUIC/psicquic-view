@@ -109,7 +109,7 @@
             <!-- local-title -->
             <!-- NB: for additional title style patterns, see http://frontier.ebi.ac.uk/web/style/patterns -->
             <c:if test="#{not empty config.logoUrl and not empty config.title}">
-                <div id="local-title" class="logo-title">
+                <div id="local-title" class="first grid_12 alpha logo-title">
                     <a href="#{requestConfigBean.absoluteContextPath}" title="Back to #{config.title} homepage">
                         <h:graphicImage value="#{config.logoUrl}" alt="Logo"/>
                     </a>
@@ -117,7 +117,7 @@
                 </div>
             </c:if>
             <c:if test="#{not empty config.logoUrl and empty config.title}">
-                <div class="grid_12 alpha logo-only" id="local-title">
+                <div class="first grid_12 alpha logo-only" id="local-title">
                     <h1 class="visuallyhidden">View</h1>
                     <a href="#{requestConfigBean.absoluteContextPath}" title="Back to View homepage">
                         <img src="#{config.logoUrl}" alt="Logo"/>
@@ -125,7 +125,7 @@
                 </div>
             </c:if>
             <c:if test="#{empty config.logoUrl}">
-                <div id="local-title">
+                <div id="local-title" class="first grid_12 alpha">
                     <h1><a href="#{requestConfigBean.absoluteContextPath}" title="Back to #{config.title} homepage">#{config.title}</a></h1>
                 </div>
             </c:if>
@@ -133,7 +133,48 @@
 
             <!-- local-search -->
             <!-- NB: if you do not have a local-search, delete the following div, and drop the class="grid_12 alpha" class from local-title above -->
+            <h:panelGroup style="#{sectionTitle eq 'Input Form' ? 'visibility: hidden;' : ''}">
+                <div class="grid_12 omega">
+                    <h:form id="local-search" prependId="false">
 
+                        <fieldset>
+
+                            <div class="left">
+                                <label>
+                                    <h:inputText value="#{userQuery.searchQuery}" id="local-searchbox"/>
+                                </label>
+                                <!--&lt;!&ndash; Include some example searchterms - keep them short and few! &ndash;&gt;-->
+                                <ot:separateConversationContext>
+        <span class="examples">Examples:
+            <h:commandLink id="example-1" value="BRCA2" action="results">
+                <f:param name="query" value="BRCA2"/>
+            </h:commandLink>,
+            <h:commandLink id="example-2" value="Q06609" action="results">
+                <f:param name="query" value="Q06609" />
+            </h:commandLink>,
+            <h:commandLink id="example-3" value="dmc1" action="results">
+                <f:param name="query" value="dmc1" />
+            </h:commandLink>,
+            <h:commandLink id="example-4" value="10831611" action="results">
+                <f:param name="query" value="10831611" />
+            </h:commandLink></span>
+                                </ot:separateConversationContext>
+                            </div>
+
+                            <div class="right">
+                                <h:commandButton id="search-submit-button" value="Search" action="#{searchBean.doNewBinarySearch}"
+                                                 style="display: inline"
+                                                 styleClass="submit"/>
+                                <!--&lt;!&ndash; If your search is more complex than just a keyword search, you can link to an Advanced Search,-->
+                                <!--with whatever features you want available &ndash;&gt;-->
+                            </div>
+
+                        </fieldset>
+
+                    </h:form>
+                </div>
+
+            </h:panelGroup>
             <!-- /local-search -->
 
             <!-- local-nav -->
