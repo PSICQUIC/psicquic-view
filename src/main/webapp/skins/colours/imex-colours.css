@@ -224,6 +224,19 @@ ul.statusMenu {
     font-family: Verdana,sans-serif;
 }
 
+#serviceForm table.af_panelTabbed_orientation-top{
+    background-color: #57A7A7;
+}
+
+#resultsToolBar table, #resultsToolBar td, #resultsToolBar th, #resultsToolBar tr {
+    border-style: none;
+    background-color: white;
+    border-spacing: 0;
+    border-collapse: separate;
+    padding: 0px;
+    margin: 0px;
+}
+
 /* Colour the faux-underline for local menu items */
 /*div#local-masthead ul li a:hover,*/
 /*div#local-masthead ul li a:focus,*/

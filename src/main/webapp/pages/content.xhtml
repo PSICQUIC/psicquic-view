@@ -184,11 +184,11 @@
             </tr:group>
         </section>
 
-        <section class="grid_20">
+        <section class="grid_24">
             <c:forEach var="service" items="${servicesTable.services}" varStatus="forStatus">
                 <tr:panelGroupLayout id="serviceTable_${forStatus.index}" rendered="#{searchBean.selectedService == service}"
                                      partialTriggers="servicesTable">
-                    <h2>#{service.name}</h2>
+                    <h3>#{service.name}</h3>
                     <ui:include src="tabs/tabs.xhtml">
                         <ui:param name="service" value="${searchBean.selectedService}"/>
                     </ui:include>
