@@ -244,3 +244,48 @@ ul.statusMenu {
     padding: 0px;
     margin: 0px;
 }
+
+div#localSearch form fieldset, form#localSearch fieldset {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 0.5em 2em 0.5em 0.3em;
+}
+
+.oldie div#localSearch form fieldset, .oldie form#localSearch fieldset {
+    background-color: transparent;
+}
+
+div#localSearch form fieldset div.left, form#localSearch fieldset div.left {
+    float: left;
+    margin-right: 2%;
+    width: 80%;
+}
+div#localSearch form fieldset div.right, form#localSearch fieldset div.right {
+    float: left;
+    text-align: center;
+    width: 18%;
+}
+
+@media only screen and (min-width: 1100px) {
+    div#localSearch form, form#localSearch {
+        float: right;
+    }
+    div#localSearch form fieldset, form#localSearch fieldset {
+        max-width: 440px;
+    }
+}
+div#localSearch form fieldset input.form-submit, div#localSearch form fieldset input.submit, form#localSearch fieldset input.submit {
+    display: inline;
+    margin: 0.3em 0.2em 0.1em;
+}
+div#localSearch form fieldset input.form-text, div#localSearch form fieldset input#local-searchbox, form#localSearch fieldset input#local-searchbox {
+    font-size: 123.1%;
+    width: 95%;
+}
+div#localSearch form fieldset span.examples, form#localSearch fieldset span.examples {
+    font-size: 80%;
+    margin: 0 0 0 0.3em;
+}
+div#localSearch form fieldset span.adv, form#localSearch fieldset span.adv {
+    font-size: 80%;
+    margin: 0;
+}

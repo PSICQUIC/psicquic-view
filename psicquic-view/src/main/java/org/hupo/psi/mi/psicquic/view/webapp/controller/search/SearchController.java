@@ -199,6 +199,11 @@ public class SearchController extends BaseController {
         return "results";
     }
 
+    public String doQuickBinarySearch() {
+
+        return doNewBinarySearch();
+    }
+
     private void processExcludedServices(String excludedServicesParam) {
         excludedServices = excludedServicesParam.split(",");
 
