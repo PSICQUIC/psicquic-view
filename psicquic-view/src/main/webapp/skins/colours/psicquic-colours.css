@@ -255,6 +255,14 @@ ul.statusMenu {
     background-color: #57A7A7;
 }
 
+#interactionResults a.af_panelPopup_link{
+    font-weight: bold;
+}
+
+#interactionResults a.OraNavBarActiveLink{
+    font-weight: bold;
+}
+
 div#localSearch form fieldset, form#localSearch fieldset {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 0.5em 2em 0.5em 0.3em;
