@@ -17,6 +17,7 @@
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://myfaces.apache.org/trinidad"
                 xsi:schemaLocation="http://psicquic.mi.psi.hupo.org/miscel /WEB-INF/psicquic-miscel.tld">
 
+<div style="overflow:auto;height:500px;margin-top:10px">
 
 <!-- RESULTS TABLE -->
 <tr:table id="interactionResults" value="#{service.results}" var="binaryInteraction" varStatus="tableStatus"
@@ -26,74 +27,74 @@
           rows="#{userQuery.pageSize}" rowBandingInterval="1" first="0" immediate="true">
 
 <f:facet name="actions">
-        <tr:panelHorizontalLayout id="resultsToolBar">
-            <f:facet name="separator">
-                <tr:outputFormatted value="&#160;&#160;&lt;b>|&lt;/b>&#160;&#160;"/>
-            </f:facet>
+    <tr:panelHorizontalLayout id="resultsToolBar">
+        <f:facet name="separator">
+            <tr:outputFormatted value="&#160;&#160;&lt;b>|&lt;/b>&#160;&#160;"/>
+        </f:facet>
 
-            <tr:panelGroupLayout layout="horizontal">
-                <tr:panelButtonBar>
-                    <tr:panelPopup id="columnsPopUp" text="Show/Hide Columns" triggerType="click" position="relative">
-                        <tr:panelGroupLayout layout="vertical">
+        <tr:panelGroupLayout layout="horizontal">
+            <tr:panelButtonBar>
+                <tr:panelPopup id="columnsPopUp" text="Show/Hide Columns" triggerType="click" position="relative">
+                    <tr:panelGroupLayout layout="vertical">
+                        <tr:spacer height="10px"/>
+                        <h:panelGroup>
+                            <tr:outputLabel value="Select:"/>
+                            <tr:commandLink id="selectMinimalColumns" text="Minimal"
+                                            actionListener="#{columnContext.selectedMinimalColumns}"
+                                            partialTriggers="columnsSelection"/>
+                            <tr:outputFormatted value="&#160;&#160;&lt;b>|&lt;/b>&#160;&#160;"/>
+                            <tr:commandLink id="selectBasicColumns" text="Basic"
+                                            actionListener="#{columnContext.selectedBasicColumns}"
+                                            partialTriggers="columnsSelection"/>
+                            <tr:outputFormatted value="&#160;&#160;&lt;b>|&lt;/b>&#160;&#160;"/>
+                            <tr:commandLink id="selectDeafaultColumns" text="Default"
+                                            actionListener="#{columnContext.selectedDefaultColumns}"
+                                            partialTriggers="columnsSelection"/>
+                            <tr:outputFormatted value="&#160;&#160;&lt;b>|&lt;/b>&#160;&#160;"/>
+                            <tr:commandLink id="selectAllColumns" text="All"
+                                            actionListener="#{columnContext.selectedAllColumns}"
+                                            partialTriggers="columnsSelection"/>
+                        </h:panelGroup>
+                        <tr:spacer height="10px"/>
+
+                        <h:panelGroup>
+                            <tr:outputText value="Add the columns that you want to see and click "/>
+                            <tr:commandLink id="selectManyColumns" text="update"
+                                            actionListener="#{columnContext.selectedColumnsChanged}"
+                                            partialTriggers="columnsSelection"/>
                             <tr:spacer height="10px"/>
-                            <h:panelGroup>
-                                <tr:outputLabel value="Select:"/>
-                                <tr:commandLink id="selectMinimalColumns" text="Minimal"
-                                                actionListener="#{columnContext.selectedMinimalColumns}"
-                                                partialTriggers="columnsSelection"/>
-                                <tr:outputFormatted value="&#160;&#160;&lt;b>|&lt;/b>&#160;&#160;"/>
-                                <tr:commandLink id="selectBasicColumns" text="Basic"
-                                                actionListener="#{columnContext.selectedBasicColumns}"
-                                                partialTriggers="columnsSelection"/>
-                                <tr:outputFormatted value="&#160;&#160;&lt;b>|&lt;/b>&#160;&#160;"/>
-                                <tr:commandLink id="selectDeafaultColumns" text="Default"
-                                                actionListener="#{columnContext.selectedDefaultColumns}"
-                                                partialTriggers="columnsSelection"/>
-                                <tr:outputFormatted value="&#160;&#160;&lt;b>|&lt;/b>&#160;&#160;"/>
-                                <tr:commandLink id="selectAllColumns" text="All"
-                                                actionListener="#{columnContext.selectedAllColumns}"
-                                                partialTriggers="columnsSelection"/>
-                            </h:panelGroup>
-                            <tr:spacer height="10px"/>
 
-                            <h:panelGroup>
-                                <tr:outputText value="Add the columns that you want to see and click "/>
-                                <tr:commandLink id="selectManyColumns" text="update"
-                                                actionListener="#{columnContext.selectedColumnsChanged}"
-                                                partialTriggers="columnsSelection"/>
-                                <tr:spacer height="10px"/>
+                            <tr:selectManyShuttle id="columnsSelection"
+                                                  leadingHeader="Non selected columns"
+                                                  trailingHeader="Selected columns"
+                                                  value="#{columnContext.selectedColumns}"
+                                    >
+                                <f:selectItems value="#{columnContext.columnsSelectItems}"/>
 
-                                <tr:selectManyShuttle id="columnsSelection"
-                                                      leadingHeader="Non selected columns"
-                                                      trailingHeader="Selected columns"
-                                                      value="#{columnContext.selectedColumns}"
-                                        >
-                                    <f:selectItems value="#{columnContext.columnsSelectItems}"/>
+                            </tr:selectManyShuttle>
+                        </h:panelGroup>
+                        <hr/>
 
-                                </tr:selectManyShuttle>
-                            </h:panelGroup>
-                            <hr/>
-
-                        </tr:panelGroupLayout>
-                    </tr:panelPopup>
+                    </tr:panelGroupLayout>
+                </tr:panelPopup>
 
 
-                    <tr:commandButton id="downloadDialogButton"
-                                      text="Download..."
-                                      useWindow="true"
-                                      action="dialog:download"
+                <tr:commandButton id="downloadDialogButton"
+                                  text="Download..."
+                                  useWindow="true"
+                                  action="dialog:download"
 
-                                      windowWidth="600" windowHeight="500"
-                                      rendered="#{service.restUrl != null}"
-                                      partialSubmit="true"
-                                      returnListener="#{fileDownload.forward}"
+                                  windowWidth="600" windowHeight="500"
+                                  rendered="#{service.restUrl != null}"
+                                  partialSubmit="true"
+                                  returnListener="#{fileDownload.forward}"
 
-                            />
+                        />
 
-                </tr:panelButtonBar>
-            </tr:panelGroupLayout>
+            </tr:panelButtonBar>
+        </tr:panelGroupLayout>
 
-        </tr:panelHorizontalLayout>
+    </tr:panelHorizontalLayout>
 </f:facet>
 
 <tr:column id="c0" styleClass="#{binaryInteraction.negativeInteraction ? 'cellTextNegativeInteraction':''}">
@@ -693,4 +694,5 @@
 </tr:column>
 
 </tr:table>
+</div>
 </ui:composition>
