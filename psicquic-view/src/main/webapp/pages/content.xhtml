@@ -26,7 +26,7 @@
         <section id="servicesTable" class="grid_18">
             <c:forEach var="service" items="${servicesTable.services}" varStatus="status">
                 <div class="grid_6">
-                <tr:panelHorizontalLayout>
+                <tr:panelHorizontalLayout styleClass="servicesResultTable">
 
                     <tr:panelPopup id="servicePopUp_${status.index}" triggerType="hover" position="relative"
                                    icon="/images/magnify.png">
