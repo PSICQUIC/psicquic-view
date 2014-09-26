@@ -291,3 +291,16 @@ div#localSearch form fieldset span.adv, form#localSearch fieldset span.adv {
 /*}*/
 
 
+span.searchterm{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 500px;
+}
+
+span.searchterm:hover {
+    overflow: visible;
+    white-space: normal;
+    width: 90%;
+    display: block;
+}
