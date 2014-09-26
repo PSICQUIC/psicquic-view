@@ -12,33 +12,28 @@
                 xmlns:ebi="http://ebi.ac.uk/faces/components"
                 xmlns:ebisf="http://www.ebi.ac.uk/faces/site">
 
-<section id="clustered-results" class="grid_24">
-<h2>
-    <strong><h:outputText value="#{searchBean.totalResults}">
-        <f:convertNumber pattern="#,###"/>
-    </h:outputText></strong> clustered binary interaction#{searchBean.totalResults != 1? 's found' : ' found'}
-    for search term <span class="searchterm" id="query"><h:outputText value="#{userQuery.searchQuery}"/></span>
+    <section id="clustered-results" class="grid_24">
+        <h2>
+            <strong><h:outputText value="#{searchBean.totalResults}">
+                <f:convertNumber pattern="#,###"/>
+            </h:outputText></strong> clustered binary interaction#{searchBean.totalResults != 1? 's found' : ' found'}
+            for search term <span class="searchterm" id="query"><h:outputText value="#{userQuery.searchQuery}"/></span>
 
-</h2>
+        </h2>
+        <tr:form id="clusteredForm">
+            <section class="grid_24">
 
-<tr:form id="clusteredForm">
+                <tr:panelGroupLayout id="clusterTable" rendered="#{searchBean.totalResults gt 0}">
+                    <tr:outputText value="#{searchBean.selectedService.name}" inlineStyle="font-weight:bold; font-size:16px"/>
 
-<tr:group rendered="#{searchBean.totalResults gt 0}">
-    <section class="grid_20">
-        <tr:panelGroupLayout id="clusterTable">
-            <tr:outputText value="#{searchBean.selectedService.name}" inlineStyle="font-weight:bold; font-size:16px"/>
-            <tr:separator/>
+                    <ui:include src="tabs/tabs.xhtml">
+                        <ui:param name="service" value="${searchBean.selectedService}"/>
+                    </ui:include>
 
-            <ui:include src="tabs/tabs.xhtml">
-                <ui:param name="service" value="${searchBean.selectedService}"/>
-            </ui:include>
+                </tr:panelGroupLayout>
+            </section>
 
-        </tr:panelGroupLayout>
+        </tr:form>
     </section>
 
-</tr:group>
-
-</tr:form>
-
-</section>
 </ui:composition>
