@@ -91,10 +91,6 @@
     </tr:panelButtonBar>
 </f:facet>
 
-<tr:column id="c0" styleClass="#{binaryInteraction.negativeInteraction ? 'cellTextNegativeInteraction':''}">
-    <tr:outputText value="#{tableStatus.index + 1}"/>
-</tr:column>
-
 <tr:column id="c1" headerText="#{messages['moleculeA.name']}"
            rendered="#{columnContext.selectedColumnsMap['moleculeA.name']}"
            styleClass="#{binaryInteraction.negativeInteraction ? 'cellTextNegativeInteraction':'cellTextCompound'}">
