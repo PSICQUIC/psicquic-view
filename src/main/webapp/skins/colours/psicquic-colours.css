@@ -257,10 +257,12 @@ ul.statusMenu {
 
 #interactionResults a.af_panelPopup_link{
     font-weight: bold;
+    color: #0f2559;
 }
 
 #interactionResults a.OraNavBarActiveLink{
     font-weight: bold;
+    color: #0f2559;
 }
 
 div#localSearch form fieldset, form#localSearch fieldset {
