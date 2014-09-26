@@ -251,6 +251,10 @@ ul.statusMenu {
     background-color: #57A7A7;
 }
 
+#interactionResults table.af_table_control-bar-top, #interactionResults table.af_table_control-bar-top td, #interactionResults table.af_table_control-bar-top tr {
+    background-color: #57A7A7;
+}
+
 div#localSearch form fieldset, form#localSearch fieldset {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 0.5em 2em 0.5em 0.3em;
