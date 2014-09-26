@@ -215,7 +215,6 @@ ul.statusMenu {
     border: 5px solid #f1f1f1;
     border-collapse: collapse;
     margin: 9px auto;
-    width: 99%;
     padding: 1px;
 }
 
@@ -224,7 +223,6 @@ ul.statusMenu {
     border: 1px solid #f1f1f1;
     border-collapse: collapse;
     margin: 9px auto;
-    width: 99%;
     border-color: #f1f1f1;
     padding: 1px;
     border-style: solid;
@@ -238,3 +236,11 @@ ul.statusMenu {
     background-color: #57A7A7;
 }
 
+#resultsToolBar table, #resultsToolBar td, #resultsToolBar th, #resultsToolBar tr {
+    border-style: none;
+    background-color: white;
+    border-spacing: 0;
+    border-collapse: separate;
+    padding: 0px;
+    margin: 0px;
+}
