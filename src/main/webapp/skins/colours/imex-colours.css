@@ -177,6 +177,23 @@ ul.statusMenu {
     vertical-align: top;
 }
 
+#clusteredForm .af_panelPopup_content {
+    background: url("http://www.ebi.ac.uk/inc/images/head_blue3b.gif?conversationContext=1") repeat-x scroll right top transparent;
+    border: 0 none;
+    padding: 5px;
+    vertical-align: top;
+}
+
+#serviceForm table.af_selectManyShuttle, #serviceForm table.af_selectManyShuttle tr, #serviceForm table.af_selectManyShuttle td,
+#serviceForm table.af_selectManyShuttle th{
+    background: #EDF6F5;
+}
+
+#clusteredForm table.af_selectManyShuttle, #clusteredForm table.af_selectManyShuttle td, #clusteredForm table.af_selectManyShuttle tr,
+#clusteredForm table.af_selectManyShuttle th {
+    background: #EDF6F5;
+}
+
 #jobListBox table, #jobListBox td, #jobListBox th, #jobListBox tr{
     background-color: #EDF6F5;
     border: 1px;
@@ -238,10 +255,12 @@ ul.statusMenu {
 
 #interactionResults a.af_panelPopup_link{
     font-weight: bold;
+    color: #0f2559;
 }
 
 #interactionResults a.OraNavBarActiveLink{
     font-weight: bold;
+    color: #0f2559;
 }
 
 div#localSearch form fieldset, form#localSearch fieldset {
