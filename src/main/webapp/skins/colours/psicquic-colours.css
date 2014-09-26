@@ -206,6 +206,22 @@ ul.statusMenu {
     background: #EDF6F5;
 }
 
+#serviceForm label.p_OraHiddenLabel{
+    visibility: hidden;
+}
+
+#clusteredForm label.p_OraHiddenLabel{
+    visibility: hidden;
+}
+
+#serviceForm td.OraShuttleHeader{
+    font-weight: bold;
+}
+
+#clusteredForm td.OraShuttleHeader{
+    font-weight: bold;
+}
+
 #mainForm .af_panelPopup_content {
     background: url("http://www.ebi.ac.uk/inc/images/head_blue3b.gif?conversationContext=1") repeat-x scroll right top transparent;
     border: 0 none;

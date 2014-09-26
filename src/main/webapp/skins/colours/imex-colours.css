@@ -194,6 +194,22 @@ ul.statusMenu {
     background: #EDF6F5;
 }
 
+#serviceForm label.p_OraHiddenLabel{
+    visibility: hidden;
+}
+
+#clusteredForm label.p_OraHiddenLabel{
+    visibility: hidden;
+}
+
+#serviceForm td.OraShuttleHeader{
+    font-weight: bold;
+}
+
+#clusteredForm td.OraShuttleHeader{
+    font-weight: bold;
+}
+
 #jobListBox table, #jobListBox td, #jobListBox th, #jobListBox tr{
     background-color: #EDF6F5;
     border: 1px;
