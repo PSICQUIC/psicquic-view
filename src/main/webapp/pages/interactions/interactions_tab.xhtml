@@ -16,8 +16,13 @@
                 xmlns:ot="http://myfaces.apache.org/orchestra"
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://myfaces.apache.org/trinidad"
                 xsi:schemaLocation="http://psicquic.mi.psi.hupo.org/miscel /WEB-INF/psicquic-miscel.tld">
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#double-scroll').doubleScroll();
+    });
+</script>
 
-<div style="overflow:auto;height:500px;margin-top:10px">
+<div id="double-scroll" style="overflow-x: scroll; overflow-y: hidden;">
 
 <!-- RESULTS TABLE -->
 <tr:table id="interactionResults" value="#{service.results}" var="binaryInteraction" varStatus="tableStatus"
