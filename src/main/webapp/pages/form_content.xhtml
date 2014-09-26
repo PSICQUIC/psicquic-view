@@ -52,7 +52,7 @@
             <section id="servicesTable" class="grid_18">
                 <c:forEach var="service" items="${searchBean.services}" varStatus="status">
                     <div class="grid_7">
-                        <tr:panelHorizontalLayout>
+                        <tr:panelHorizontalLayout styleClass="servicesResultTable">
 
                             <tr:panelPopup id="servicePopUp_${status.index}" triggerType="hover" position="relative"
                                            icon="/images/magnify.png">

@@ -313,3 +313,7 @@ span.searchterm:hover {
     width: 90%;
     display: block;
 }
+
+table.servicesResultTable {
+    width: auto;
+}
