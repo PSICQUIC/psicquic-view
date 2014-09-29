@@ -20,11 +20,11 @@
             topScrollBarMarkup: '<div class="suwala-doubleScroll-scroll-wrapper" style="height: 20px;"><div class="suwala-doubleScroll-scroll" style="height: 20px;"></div></div>',
             topScrollBarInnerSelector: '.suwala-doubleScroll-scroll',
             scrollCss: {
-                'overflow-x': 'scroll',
+                'overflow-x': 'auto',
                 'overflow-y':'hidden'
             },
             contentCss: {
-                'overflow-x': 'scroll',
+                'overflow-x': 'auto',
                 'overflow-y':'hidden'
             }
         },
