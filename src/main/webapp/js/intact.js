@@ -171,3 +171,13 @@ function highlightSpecies( vis ) {
         vis.visualStyle( style );
     }
 }
+
+function showTableHideGraph(){
+    $("#ptab-1").show();
+    $("#ptab-2").hide();
+}
+
+function showGraphHideTable(){
+    $("#ptab-1").hide();
+    $("#ptab-2").show();
+}

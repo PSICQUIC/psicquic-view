@@ -1,25 +1,34 @@
- <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:tr="http://myfaces.apache.org/trinidad"
                 xmlns:sf="http://www.ebi.ac.uk/faces/site"
-                xmlns:c="http://java.sun.com/jstl/core"
+                xmlns:c="http://java.sun.com/jstl/core" xmlns:h="http://java.sun.com/jsf/html"
         >
 
-     <tr:panelTabbed id="ptab" position="above" partialTriggers="interactionTabTwo graphTabOne servicesTable clusterTable" >
-         <tr:showDetailItem id="interactionTabTwo" text="Table" disclosed="true">
-             <tr:panelGroupLayout>
-                 <ui:include src="/pages/interactions/interactions_tab.xhtml">
-                     <ui:param name="service" value="#{service}"/>
-                 </ui:include>
-             </tr:panelGroupLayout>
-         </tr:showDetailItem>
+     <!--<tr:panelTabbed id="ptab" position="above" partialTriggers="interactionTabTwo graphTabOne servicesTable clusterTable" >-->
+         <!--<tr:showDetailItem id="interactionTabTwo" text="Table" disclosed="true">-->
+             <!--<tr:panelGroupLayout>-->
+                 <!--<ui:include src="/pages/interactions/interactions_tab.xhtml">-->
+                     <!--<ui:param name="service" value="#{service}"/>-->
+                 <!--</ui:include>-->
+             <!--</tr:panelGroupLayout>-->
+         <!--</tr:showDetailItem>-->
 
-         <tr:showDetailItem id="graphTabOne" text="Graph" disabled="#{not searchBean.graphEnabled or userQuery.onlyNegativeQuery}"
-                            shortDesc="You can only visualize network with up to #{searchBean.maxNetworkSize} interactions.">
-             <tr:panelGroupLayout>
-                 <ui:include src="/pages/graph/graph.xhtml"/>
-             </tr:panelGroupLayout>
-         </tr:showDetailItem>
-     </tr:panelTabbed>
+         <!--<tr:showDetailItem id="graphTabOne" text="Graph" disabled="#{not searchBean.graphEnabled or userQuery.onlyNegativeQuery}"-->
+                            <!--shortDesc="You can only visualize network with up to #{searchBean.maxNetworkSize} interactions.">-->
+             <!--<tr:panelGroupLayout>-->
+                 <!--<ui:include src="/pages/graph/graph.xhtml"/>-->
+             <!--</tr:panelGroupLayout>-->
+         <!--</tr:showDetailItem>-->
+     <!--</tr:panelTabbed>-->
+
+     <div id="ptab">
+         <ul>
+             <li><a href="#ptab-1" onclick="showTableHideGraph();">Table</a></li>
+             <li><a href="#ptab-2" onclick="showGraphHideTable();">Graph</a></li>
+         </ul>
+         <div id="ptab-1"><ui:include src="/pages/interactions/interactions_tab.xhtml"><ui:param name="service" value="#{service}"/></ui:include></div>
+         <div id="ptab-2"><ui:include src="/pages/graph/graph.xhtml"/></div>
+     </div>
 
 </ui:composition>

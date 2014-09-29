@@ -43,7 +43,7 @@
 
     <!-- for production the above can be replaced with -->
     <link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/mini/ebi-fluid-embl.css"/>
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
     <!-- you can replace this with [projectname]-colours.css. See http://frontier.ebi.ac.uk/web/style/colour for details of how to do this -->
     <!-- also inform ES so we can host your colour palette file -->
     <!--<link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/develop/embl-petrol-colours.css" type="text/css" media="screen">-->
@@ -71,6 +71,7 @@
 
 
 
+
 </head>
 
 <f:view>
@@ -92,6 +93,16 @@
 <script type="text/javascript" src="#{requestConfigBean.absoluteContextPath}/cytoscapeweb_v1.0.4/js/min/AC_OETags.min.js"></script>
 <script type="text/javascript" src="#{requestConfigBean.absoluteContextPath}/cytoscapeweb_v1.0.4/js/min/json2.min.js"></script>
 <script type="text/javascript" src="#{requestConfigBean.absoluteContextPath}/cytoscapeweb_v1.0.4/js/min/cytoscapeweb.min.js"></script>
+
+<script type="text/javascript" src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        if ($("#ptab").length > 0) {
+            $("#ptab").tabs();
+            showTableHideGraph();
+        }
+    });
+</script>
 
 <div id="wrapper" class="container_24">
     <header>
@@ -155,7 +166,7 @@
                                 <label>
                                     <h:inputText value="#{userQuery.searchQuery}" id="local-searchbox"/>
                                 </label>
-                                <!--&lt;!&ndash; Include some example searchterms - keep them short and few! &ndash;&gt;-->
+                                <!-- Include some example searchterms - keep them short and few! -->
                                 <ot:separateConversationContext>
         <span class="examples">Examples:
             <h:outputLink value="main.xhtml?query=BRCA2">BRCA2</h:outputLink>,
@@ -170,8 +181,8 @@
                                 <h:commandButton id="search-submit-button" value="Search" action="#{searchBean.doNewBinarySearch}"
                                                  style="display: inline"
                                                  styleClass="submit"/>
-                                <!--&lt;!&ndash; If your search is more complex than just a keyword search, you can link to an Advanced Search,-->
-                                <!--with whatever features you want available &ndash;&gt;-->
+                                <!-- If your search is more complex than just a keyword search, you can link to an Advanced Search,
+                                with whatever features you want available -->
                             </div>
 
                         </fieldset>
@@ -321,6 +332,7 @@
         }
     });
 </script>
+
 
 <!-- end scripts-->
 
