@@ -408,6 +408,13 @@ table.servicesResultTable {
     color: #222222;
 }
 
+
+.ui-widget-content {
+    background: url("images/ui-bg_flat_75_ffffff_40x100.png") repeat-x scroll 50% 50% #ffffff;
+    border: 0;
+    color: #222222;
+}
+
 /* Interaction states
 ----------------------------------*/
 .ui-state-default,
@@ -417,6 +424,9 @@ table.servicesResultTable {
     background: #EBEBEB;
     font-weight: normal;
     color: #555555;
+    height: 25px;
+    width: 60px;
+    text-align: center;
 }
 .ui-state-default a,
 .ui-state-default a:link,
