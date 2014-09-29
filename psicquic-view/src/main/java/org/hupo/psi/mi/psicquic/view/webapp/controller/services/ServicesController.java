@@ -314,10 +314,12 @@ public class ServicesController extends BaseController implements java.io.Serial
     public int getSelectedResults() {
         selectedResults = 0;
 
-        for (QueryHits service : services) {
-            if (service != null) {
-                if (service.isChecked() && service.getHits() >= 0) {
-                    selectedResults += service.getHits();
+        if (services != null){
+            for (QueryHits service : services) {
+                if (service != null) {
+                    if (service.isChecked() && service.getHits() >= 0) {
+                        selectedResults += service.getHits();
+                    }
                 }
             }
         }
