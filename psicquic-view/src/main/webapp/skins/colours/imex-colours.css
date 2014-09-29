@@ -164,21 +164,21 @@ ul.statusMenu {
 }
 
 #serviceForm .af_panelPopup_content {
-    background: url("http://www.ebi.ac.uk/inc/images/head_blue3b.gif?conversationContext=1") repeat-x scroll right top transparent;
+    background: #E9E8E8;
     border: 0 none;
     padding: 5px;
     vertical-align: top;
 }
 
 #mainForm .af_panelPopup_content {
-    background: url("http://www.ebi.ac.uk/inc/images/head_blue3b.gif?conversationContext=1") repeat-x scroll right top transparent;
+    background: #E9E8E8;
     border: 0 none;
     padding: 5px;
     vertical-align: top;
 }
 
 #clusteredForm .af_panelPopup_content {
-    background: url("http://www.ebi.ac.uk/inc/images/head_blue3b.gif?conversationContext=1") repeat-x scroll right top transparent;
+    background: #E9E8E8;
     border: 0 none;
     padding: 5px;
     vertical-align: top;
@@ -186,12 +186,12 @@ ul.statusMenu {
 
 #serviceForm table.af_selectManyShuttle, #serviceForm table.af_selectManyShuttle tr, #serviceForm table.af_selectManyShuttle td,
 #serviceForm table.af_selectManyShuttle th{
-    background: #EDF6F5;
+    background: #9D9D9D;
 }
 
 #clusteredForm table.af_selectManyShuttle, #clusteredForm table.af_selectManyShuttle td, #clusteredForm table.af_selectManyShuttle tr,
 #clusteredForm table.af_selectManyShuttle th {
-    background: #EDF6F5;
+    background: #9D9D9D;
 }
 
 #serviceForm label.p_OraHiddenLabel{
@@ -216,33 +216,33 @@ ul.statusMenu {
     border-collapse: separate;
     padding: 0px;
     margin: 0px;
-    background: url("http://www.ebi.ac.uk/inc/images/head_blue3b.gif?conversationContext=1") repeat-x scroll right top transparent;
+    background: #E9E8E8;
 }
 
 .af_dialog_container {
-    background: url("http://www.ebi.ac.uk/inc/images/head_blue3b.gif?conversationContext=1") repeat-x scroll right top transparent;
+    background: #E9E8E8;
 }
 .af_dialog_content{
-    background: url("http://www.ebi.ac.uk/inc/images/head_blue3b.gif?conversationContext=1") repeat-x scroll right top transparent;
+    background: #E9E8E8;
 }
 .downloadPopup{
-    background: url("http://www.ebi.ac.uk/inc/images/head_blue3b.gif?conversationContext=1") repeat-x scroll right top transparent;
+    background: #E9E8E8;
 }
 
 #downloadHorizontalPanel tr{
-    background: #EDF6F5;
+    background: #E9E8E8;
 }
 
 #downloadSelectOneChoice__xc_ table, #downloadSelectOneChoice__xc_ tr, #downloadSelectOneChoice__xc_ td{
-    background: #EDF6F5;
+    background: #E9E8E8;
 }
 
 #downloadHorizontalPanel table, #downloadHorizontalPanel tr, #downloadHorizontalPanel td{
-    background: #EDF6F5;
+    background: #E9E8E8;
 }
 
 #jobListBox table, #jobListBox td, #jobListBox th, #jobListBox tr{
-    background-color: #EDF6F5;
+    background-color: #E9E8E8;
     border: 1px;
     padding: 1px;
 }
@@ -252,7 +252,7 @@ ul.statusMenu {
 }
 
 #interactionResults th.af_column_header-text{
-    background-color: #57A7A7;
+    background-color: #9D9D9D;
     border: 1px solid #f1f1f1;
     border-collapse: collapse;
     margin: 9px auto;
@@ -293,11 +293,11 @@ ul.statusMenu {
 }
 
 #serviceForm table.af_panelTabbed_orientation-top{
-    background-color: #57A7A7;
+    background-color: #E9E8E8;
 }
 
 #interactionResults table.af_table_control-bar-top, #interactionResults table.af_table_control-bar-top td, #interactionResults table.af_table_control-bar-top tr {
-    background-color: #57A7A7;
+    background-color: #9D9D9D;
 }
 
 #interactionResults a.af_panelPopup_link{
