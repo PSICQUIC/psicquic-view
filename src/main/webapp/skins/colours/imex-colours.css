@@ -210,6 +210,37 @@ ul.statusMenu {
     font-weight: bold;
 }
 
+#download table, #download td, #download th, #download tr {
+    border-style: none;
+    border-spacing: 0;
+    border-collapse: separate;
+    padding: 0px;
+    margin: 0px;
+    background: url("http://www.ebi.ac.uk/inc/images/head_blue3b.gif?conversationContext=1") repeat-x scroll right top transparent;
+}
+
+.af_dialog_container {
+    background: url("http://www.ebi.ac.uk/inc/images/head_blue3b.gif?conversationContext=1") repeat-x scroll right top transparent;
+}
+.af_dialog_content{
+    background: url("http://www.ebi.ac.uk/inc/images/head_blue3b.gif?conversationContext=1") repeat-x scroll right top transparent;
+}
+.downloadPopup{
+    background: url("http://www.ebi.ac.uk/inc/images/head_blue3b.gif?conversationContext=1") repeat-x scroll right top transparent;
+}
+
+#downloadHorizontalPanel tr{
+    background: #EDF6F5;
+}
+
+#downloadSelectOneChoice__xc_ table, #downloadSelectOneChoice__xc_ tr, #downloadSelectOneChoice__xc_ td{
+    background: #EDF6F5;
+}
+
+#downloadHorizontalPanel table, #downloadHorizontalPanel tr, #downloadHorizontalPanel td{
+    background: #EDF6F5;
+}
+
 #jobListBox table, #jobListBox td, #jobListBox th, #jobListBox tr{
     background-color: #EDF6F5;
     border: 1px;
