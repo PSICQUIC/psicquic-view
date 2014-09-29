@@ -239,6 +239,10 @@ ul.statusMenu {
     font-weight: bold;
 }
 
+#rightPanel td.af_panelBox_header{
+    font-weight: bold;
+}
+
 #interactionResults th.af_column_header-text{
     background-color: #57A7A7;
     border: 1px solid #f1f1f1;
