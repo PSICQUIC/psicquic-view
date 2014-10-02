@@ -39,19 +39,14 @@
                         </li>
                         <li>The numbers show the interactions retrieved in the last query.</li>
                         <li>Click on the links below to display the results for each selected service.</li>
-                        <li>The cluster will be enabled with less than #{config.clusteringSizeLimit} interactions.</li>
+                        <li>The clustering will be enabled with less than #{config.clusteringSizeLimit} interactions.</li>
 
                     </ul>
                 </h:panelGroup>
             </div>
-            <div class="grid_6">
-                <h4>Status of the service</h4>
-                <ui:include src="search/legend.xhtml"/>
-            </div>
-
             <section id="servicesTable" class="grid_18">
                 <c:forEach var="service" items="${searchBean.services}" varStatus="status">
-                    <div class="grid_7">
+                    <div class="grid_6">
                         <tr:panelHorizontalLayout styleClass="servicesResultTable">
 
                             <tr:panelPopup id="servicePopUp_${status.index}" triggerType="hover" position="relative"
@@ -111,6 +106,11 @@
                 </c:forEach>
 
             </section>
+            <div class="grid_6">
+                <h4>Status of the service</h4>
+                <ui:include src="search/legend.xhtml"/>
+            </div>
+
         </tr:form>
     </section>
 </ui:composition>
