@@ -297,7 +297,7 @@ public class ServicesController extends BaseController implements java.io.Serial
         return services;
     }
 
-    public void setServices(ArrayList<QueryHits> services) {
+    public void setServices(List<QueryHits> services) {
         this.services = services;
     }
 
