@@ -189,7 +189,7 @@
     <h:panelGroup rendered="#{binaryInteraction.interactorA != null}">
         <tr:iterator var="organism" value="#{binaryInteraction.interactorA.organism}">
             <tr:iterator var="xref" value="#{psmf:getUniqueOrganismXref(organism.identifiers)}">
-                <psx:goOls query="#{xref.identifier}" termName="#{xref.text}"/>
+                <psx:goOls query="NCBITaxon:#{xref.identifier}" termName="#{xref.text}"/>
             </tr:iterator>
         </tr:iterator>
     </h:panelGroup>
@@ -204,7 +204,7 @@
     <h:panelGroup rendered="#{binaryInteraction.interactorB != null}">
         <tr:iterator var="organism" value="#{binaryInteraction.interactorB.organism}">
             <tr:iterator var="xref" value="#{psmf:getUniqueOrganismXref(organism.identifiers)}">
-                <psx:goOls query="#{xref.identifier}" termName="#{xref.text}"/>
+                <psx:goOls query="NCBITaxon:#{xref.identifier}" termName="#{xref.text}"/>
             </tr:iterator>
         </tr:iterator>
     </h:panelGroup>
@@ -470,7 +470,7 @@
         >
     <tr:iterator var="organism" value="#{binaryInteraction.hostOrganism}">
         <tr:iterator var="xref" value="#{psmf:getUniqueOrganismXref(organism.identifiers)}">
-            <psx:goOls query="#{xref.identifier}" termName="#{xref.text}"/>
+            <psx:goOls query="NCBITaxon:#{xref.identifier}" termName="#{xref.text}"/>
         </tr:iterator>
     </tr:iterator>
 </tr:column>
