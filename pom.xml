@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.hupo.psi.mi.psicquic</groupId>
@@ -12,9 +12,10 @@
     <name>PSICQUIC :: View</name>
 
     <scm>
-        <connection>scm:svn:https://psicquic.googlecode.com/svn/trunk/psicquic-view</connection>
-        <developerConnection>scm:svn:https://psicquic.googlecode.com/svn/trunk/psicquic-view</developerConnection>
-        <url>https://psicquic.googlecode.com/svn/trunk/psicquic-view</url>
+        <connection>scm:git:https://github.com/PSICQUIC/psicquic-view</connection>
+        <developerConnection>scm:git:https://github.com/PSICQUIC/psicquic-view</developerConnection>
+        <url>https://github.com/PSICQUIC/psicquic-view</url>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
@@ -44,6 +45,12 @@
         <spring.version>3.1.2.RELEASE</spring.version>
         <spring.batch.version>2.1.8.RELEASE</spring.batch.version>
         <spring.security.version>3.1.2.RELEASE</spring.security.version>
+
+        <psicquic.simple.client.version>1.3.4-SNAPSHOT</psicquic.simple.client.version>
+        <psicquic.registry.client.version>1.1.1-SNAPSHOT</psicquic.registry.client.version>
+        <psimitab.version>1.8.6-SNAPSHOT</psimitab.version>
+        <psicquic.clustering>1.0.4-SNAPSHOT</psicquic.clustering>
+
     </properties>
 
     <build>
@@ -62,6 +69,24 @@
         </resources>
 
         <plugins>
+            <plugin>
+                <groupId>external.atlassian.jgitflow</groupId>
+                <artifactId>jgitflow-maven-plugin</artifactId>
+                <version>1.0-m5.1</version>
+                <configuration>
+                    <flowInitContext>
+                        <masterBranchName>master</masterBranchName>
+                        <developBranchName>develop</developBranchName>
+                        <featureBranchPrefix>feature-</featureBranchPrefix>
+                        <releaseBranchPrefix>release-</releaseBranchPrefix>
+                        <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
+                        <versionTagPrefix>${project.artifactId}-</versionTagPrefix>
+                    </flowInitContext>
+                    <!-- see goals wiki page for configuration options -->
+                    <!--Whether to allow untracked files when checking if the working tree is clean.-->
+                    <allowUntracked>true</allowUntracked>
+                </configuration>
+            </plugin>
 
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -94,9 +119,27 @@
                     <contextPath>${appRoot}/${jetty.context}</contextPath>
                 </configuration>
             </plugin>
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>disable-java8-doclint</id>
+            <activation>
+                <jdk>[1.8,)</jdk>
+            </activation>
+            <properties>
+                <additionalparam>-Xdoclint:none</additionalparam>
+            </properties>
+        </profile>
+    </profiles>
 
     <!-- Project dependencies -->
     <dependencies>
@@ -105,26 +148,26 @@
         <dependency>
             <groupId>org.hupo.psi.mi.psicquic</groupId>
             <artifactId>psicquic-simple-client</artifactId>
-            <version>1.3.4-SNAPSHOT</version>
+            <version>${psicquic.simple.client.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hupo.psi.mi.psicquic</groupId>
             <artifactId>psicquic-registry-client</artifactId>
-            <version>1.1.1-SNAPSHOT</version>
+            <version>${psicquic.registry.client.version}</version>
         </dependency>
 
         <!-- MITAB -->
         <dependency>
             <groupId>psidev.psi.mi</groupId>
             <artifactId>psimitab</artifactId>
-            <version>1.8.6-SNAPSHOT</version>
+            <version>${psimitab.version}</version>
         </dependency>
 
         <!-- PSICQUIC Clustering -->
         <dependency>
             <groupId>org.hupo.psi.mi.psicquic</groupId>
             <artifactId>psicquic-clustering</artifactId>
-            <version>1.0.4-SNAPSHOT</version>
+            <version>${psicquic.clustering}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.apache.geronimo.specs</groupId>
@@ -399,9 +442,16 @@
 
     <repositories>
         <repository>
-            <id>intact.nexus</id>
-            <name>IntAct Nexus</name>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/groups/public</url>
+            <id>nexus-ebi-repo-old</id>
+            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo/</url>
+        </repository>
+        <repository>
+            <id>nexus-ebi-release-repo</id>
+            <url>http://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-repo/</url>
+        </repository>
+        <repository>
+            <id>nexus-ebi-snapshot-repo</id>
+            <url>http://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-snapshots/</url>
         </repository>
     </repositories>
 
