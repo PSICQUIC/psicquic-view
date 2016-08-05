@@ -10,13 +10,14 @@
                 xmlns:ebisf="http://www.ebi.ac.uk/faces/site">
 
     <!--<h:panelGroup style="white-space:nowrap;">-->
+    <!--This is only used for organism, so we adapt the query to NCBI in the OLS v2-->
 	<h:panelGroup>
 	<tr:outputText value="#{termName} (" rendered="#{termName != null}"/>
 
         <ui:param name="disabled" value="#{disabled? disabled : fn:startsWith(query, '-')}"/>
 
         <tr:goLink targetFrame="uniprot" text="#{(text != null)? text : query}" disabled="#{disabled != null? disabled : false}"
-                destination="http://www.ebi.ac.uk/ols/search?q=#{query}&amp;exact=on"/>
+                destination="http://www.ebi.ac.uk/ols/ontologies/ncbitaxon/terms?obo_id=NCBITaxon:${query}"/>
         <tr:outputText value=")" rendered="#{termName != null}"/>
     </h:panelGroup>
 </ui:composition>

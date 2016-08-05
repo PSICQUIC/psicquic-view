@@ -55,8 +55,8 @@
         <source>facelets/components/links/GoUniprot.xhtml</source>
     </tag>
     <tag>
-        <tag-name>goOls</tag-name>
-        <source>facelets/components/links/GoOls.xhtml</source>
+        <tag-name>goNCBIOls</tag-name>
+        <source>facelets/components/links/GoNCBIOls.xhtml</source>
     </tag>
 
 </facelet-taglib>
