@@ -128,6 +128,24 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>external.atlassian.jgitflow</groupId>
+                <artifactId>jgitflow-maven-plugin</artifactId>
+                <version>1.0-m5.1</version>
+                <configuration>
+                    <flowInitContext>
+                        <masterBranchName>master</masterBranchName>
+                        <developBranchName>develop</developBranchName>
+                        <featureBranchPrefix>feature-</featureBranchPrefix>
+                        <releaseBranchPrefix>release-</releaseBranchPrefix>
+                        <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
+                        <versionTagPrefix>${project.artifactId}-</versionTagPrefix>
+                    </flowInitContext>
+                    <!--Need to allow snapshot because of primefaces-->
+                    <allowSnapshots>true</allowSnapshots>
+                    <noDeploy>true</noDeploy>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <profiles>
@@ -443,8 +461,9 @@
 
     <repositories>
         <repository>
-            <id>nexus-ebi-repo-old</id>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo/</url>
+            <id>intact.nexus</id>
+            <name>IntAct Nexus</name>
+            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/groups/public</url>
         </repository>
         <repository>
             <id>nexus-ebi-release-repo</id>
