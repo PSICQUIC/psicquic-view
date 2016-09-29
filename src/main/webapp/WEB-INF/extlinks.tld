@@ -133,7 +133,7 @@
         </attribute>
     </tag>
     <tag>
-        <name>goOls</name>
+        <name>goNCBIOls</name>
         <attribute>
             <name>termName</name>
             <required>true</required>
