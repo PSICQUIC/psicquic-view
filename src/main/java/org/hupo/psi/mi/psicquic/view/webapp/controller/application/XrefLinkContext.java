@@ -80,7 +80,4 @@ public class XrefLinkContext implements Serializable {
         return xrefUrls.get("intact");
     }
 
-    public String getHierarchViewUrl() {
-        return xrefUrls.get("hierarchView");
-    }
 }
