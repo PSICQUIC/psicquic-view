@@ -8,7 +8,7 @@
     <packaging>war</packaging>
     <version>1.4.8-SNAPSHOT</version>
 
-    <name>PSICQUIC :: View</name>
+    <name>PSI :: PSICQUIC View</name>
 
     <scm>
         <connection>scm:git:https://github.com/PSICQUIC/psicquic-view</connection>
@@ -45,11 +45,11 @@
         <spring.batch.version>2.1.8.RELEASE</spring.batch.version>
         <spring.security.version>3.1.2.RELEASE</spring.security.version>
 
-        <psicquic.simple.client.version>1.3.3</psicquic.simple.client.version>
+        <!--<psicquic.simple.client.version>1.3.3</psicquic.simple.client.version>-->
         <psicquic.registry.client.version>1.1.0</psicquic.registry.client.version>
         <!--Overwrite the version on psicquic clustering because in 1.8.4 there is a bug-->
-        <psimitab.version>1.8.5</psimitab.version>
-        <psicquic.clustering>1.0.3</psicquic.clustering>
+        <!--<psimitab.version>1.8.5</psimitab.version>-->
+        <psicquic.clustering>1.0.4-SNAPSHOT</psicquic.clustering>
 
     </properties>
 
@@ -69,6 +69,34 @@
         </resources>
 
         <plugins>
+            <plugin>
+                <!--mvn jgitflow:release-start -Dgit.user=xxxx -Dgit.password=xxxx-->
+                <!--mvn jgitflow:release-finish -Dmaven.javadoc.skip=true -Dgit.user=xxxx -Dgit.password=xxxx-->
+                <groupId>external.atlassian.jgitflow</groupId>
+                <artifactId>jgitflow-maven-plugin</artifactId>
+                <version>1.0-m5.1</version>
+                <configuration>
+                    <flowInitContext>
+                        <masterBranchName>master</masterBranchName>
+                        <developBranchName>develop</developBranchName>
+                        <featureBranchPrefix>feature-</featureBranchPrefix>
+                        <releaseBranchPrefix>release-</releaseBranchPrefix>
+                        <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
+                        <versionTagPrefix>${project.artifactId}-</versionTagPrefix>
+                    </flowInitContext>
+                    <!-- see goals wiki page for configuration options -->
+                    <!--Need to allow snapshot because of primefaces-->
+                    <allowSnapshots>true</allowSnapshots>
+                    <noDeploy>true</noDeploy>
+                    <username>${git.user}</username>
+                    <password>${git.password}</password>
+                    <pullMaster>true</pullMaster>
+                    <pullDevelop>true</pullDevelop>
+                    <pushReleases>true</pushReleases>
+                    <pushHotfixes>true</pushHotfixes>
+                    <pushFeatures>true</pushFeatures>
+                </configuration>
+            </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
@@ -108,24 +136,6 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>external.atlassian.jgitflow</groupId>
-                <artifactId>jgitflow-maven-plugin</artifactId>
-                <version>1.0-m5.1</version>
-                <configuration>
-                    <flowInitContext>
-                        <masterBranchName>master</masterBranchName>
-                        <developBranchName>develop</developBranchName>
-                        <featureBranchPrefix>feature-</featureBranchPrefix>
-                        <releaseBranchPrefix>release-</releaseBranchPrefix>
-                        <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
-                        <versionTagPrefix>${project.artifactId}-</versionTagPrefix>
-                    </flowInitContext>
-                    <!--Need to allow snapshot because of primefaces-->
-                    <allowSnapshots>true</allowSnapshots>
-                    <noDeploy>true</noDeploy>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
     <profiles>
@@ -144,11 +154,11 @@
     <dependencies>
 
         <!-- PSICQUIC -->
-        <dependency>
-            <groupId>org.hupo.psi.mi.psicquic</groupId>
-            <artifactId>psicquic-simple-client</artifactId>
-            <version>${psicquic.simple.client.version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.hupo.psi.mi.psicquic</groupId>-->
+            <!--<artifactId>psicquic-simple-client</artifactId>-->
+            <!--<version>${psicquic.simple.client.version}</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.hupo.psi.mi.psicquic</groupId>
             <artifactId>psicquic-registry-client</artifactId>
@@ -156,11 +166,11 @@
         </dependency>
 
         <!-- MITAB -->
-        <dependency>
-            <groupId>psidev.psi.mi</groupId>
-            <artifactId>psimitab</artifactId>
-            <version>${psimitab.version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>psidev.psi.mi</groupId>-->
+            <!--<artifactId>psimitab</artifactId>-->
+            <!--<version>${psimitab.version}</version>-->
+        <!--</dependency>-->
 
         <!-- PSICQUIC Clustering -->
         <dependency>
@@ -440,11 +450,6 @@
     </dependencies>
 
     <repositories>
-        <repository>
-            <id>intact.nexus</id>
-            <name>IntAct Nexus</name>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/groups/public</url>
-        </repository>
         <repository>
             <id>nexus-ebi-release-repo</id>
             <url>http://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-repo/</url>
