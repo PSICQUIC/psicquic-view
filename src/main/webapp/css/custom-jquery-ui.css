@@ -844,7 +844,7 @@ body .ui-tooltip {
     /*font-size: 1em;*/
 }
 .ui-widget-content {
-    border: 0;
+    border: 1px solid #aaaaaa;
     background: #ffffff url("images/ui-bg_flat_75_ffffff_40x100.png") 50% 50% repeat-x;
     color: #222222;
 }
@@ -853,7 +853,7 @@ body .ui-tooltip {
 }
 .ui-widget-header {
     border: 1px solid #aaaaaa;
-    background: #57A7A7 url("images/ui-bg_highlight-soft_75_cccccc_1x100.png") 50% 50% repeat-x;
+    background: #cccccc url("images/ui-bg_highlight-soft_75_cccccc_1x100.png") 50% 50% repeat-x;
     color: #222222;
     font-weight: bold;
 }
@@ -1226,23 +1226,3 @@ body .ui-tooltip {
     filter: Alpha(Opacity=30); /* support: IE8 */
     border-radius: 8px;
 }
-
-/*Override colors for the tabs*/
-
-.ui-widget-header {
-    border: 1px solid #aaaaaa;
-    background: #57A7A7;
-    color: #222222;
-    font-weight: bold;
-}
-.ui-widget-header a {
-    color: #222222;
-}
-
-
-.ui-widget-content {
-    background: url("images/ui-bg_flat_75_ffffff_40x100.png") repeat-x scroll 50% 50% #ffffff;
-    border: 0;
-    color: #222222;
-}
-

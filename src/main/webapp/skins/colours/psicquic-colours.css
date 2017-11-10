@@ -390,3 +390,10 @@ span.searchterm:hover {
 table.servicesResultTable {
     width: auto;
 }
+
+.ui-widget-header {
+    border: 1px solid #aaaaaa;
+    background: #57A7A7;
+    color: #222222;
+    font-weight: bold;
+}
