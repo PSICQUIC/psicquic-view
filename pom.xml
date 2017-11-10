@@ -26,7 +26,7 @@
         <jetty.context>view</jetty.context>
 
         <!-- configurable -->
-        <!--<registry.url>http://www.ebi.ac.uk/Tools/webservices/psicquic/registry/</registry.url>-->
+        <registry.url>http://www.ebi.ac.uk/Tools/webservices/psicquic/registry/</registry.url>
         <!--<registry.url>http://wwwdev.ebi.ac.uk/Tools/webservices/psicquic/registry/</registry.url>-->
         <!--<registry.url>http://localhost:9091/psicquic-registry/</registry.url>-->
 
@@ -45,12 +45,9 @@
         <spring.batch.version>2.1.8.RELEASE</spring.batch.version>
         <spring.security.version>3.1.2.RELEASE</spring.security.version>
 
-        <!--<psicquic.simple.client.version>1.3.3</psicquic.simple.client.version>-->
-        <psicquic.registry.client.version>1.1.1</psicquic.registry.client.version>
-        <!--Overwrite the version on psicquic clustering because in 1.8.4 there is a bug-->
-        <!--<psimitab.version>1.8.5</psimitab.version>-->
-        <psicquic.clustering>1.0.4-SNAPSHOT</psicquic.clustering>
-
+        <psicquic.clustering>1.0.4</psicquic.clustering>
+        <!--Pull by psicquic clustering. Transitive dependency-->
+        <!--<psicquic.registry.client.version>1.1.1</psicquic.registry.client.version>-->
     </properties>
 
     <build>
@@ -156,26 +153,7 @@
     <!-- Project dependencies -->
     <dependencies>
 
-        <!-- PSICQUIC -->
-        <!--<dependency>-->
-            <!--<groupId>org.hupo.psi.mi.psicquic</groupId>-->
-            <!--<artifactId>psicquic-simple-client</artifactId>-->
-            <!--<version>${psicquic.simple.client.version}</version>-->
-        <!--</dependency>-->
-        <dependency>
-            <groupId>org.hupo.psi.mi.psicquic</groupId>
-            <artifactId>psicquic-registry-client</artifactId>
-            <version>${psicquic.registry.client.version}</version>
-        </dependency>
-
-        <!-- MITAB -->
-        <!--<dependency>-->
-            <!--<groupId>psidev.psi.mi</groupId>-->
-            <!--<artifactId>psimitab</artifactId>-->
-            <!--<version>${psimitab.version}</version>-->
-        <!--</dependency>-->
-
-        <!-- PSICQUIC Clustering -->
+        <!-- PSICQUIC  -->
         <dependency>
             <groupId>org.hupo.psi.mi.psicquic</groupId>
             <artifactId>psicquic-clustering</artifactId>
@@ -220,12 +198,40 @@
             <version>2.2.2</version>
         </dependency>
 
+        <!--This dependency can not be regenerated. Source code not available-->
         <dependency>
             <groupId>uk.ac.ebi.faces</groupId>
             <artifactId>ebifaces-core</artifactId>
             <version>1.3.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.sun.facelets</groupId>
+                    <artifactId>jsf-facelets</artifactId>
+                </exclusion>
+                <!--duplicated-->
+                <exclusion>
+                    <groupId>javax.servlet.jsp.jstl</groupId>
+                    <artifactId>jstl</artifactId>
+                </exclusion>
+                <!--duplicated-->
+                <exclusion>
+                    <groupId>taglibs</groupId>
+                    <artifactId>standard</artifactId>
+                </exclusion>
+                <!--duplicated-->
+                <exclusion>
+                    <groupId>javax.xml.bind</groupId>
+                    <artifactId>jaxb-api</artifactId>
+                </exclusion>
+                <!--duplicated-->
+                <exclusion>
+                    <groupId>com.sun.xml.bind</groupId>
+                    <artifactId>jaxb-impl</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
+        <!--only this version works with PSICQUIC -->
         <dependency>
             <groupId>com.sun.facelets</groupId>
             <artifactId>jsf-facelets</artifactId>
@@ -460,6 +466,12 @@
         <repository>
             <id>nexus-ebi-snapshot-repo</id>
             <url>http://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-snapshots/</url>
+        </repository>
+        <repository>
+            <!--we use this repository for grouping all the external repos needed for jsf/facelets-->
+            <!-- needs authentication in the settings -->
+            <id>nexus-ebi-pst-proxy-group</id>
+            <url>http://www.ebi.ac.uk/Tools/maven/repos/content/groups/pst-proxy/</url>
         </repository>
     </repositories>
 
