@@ -53,6 +53,25 @@
     <style type="text/css">
         /* You have the option of setting a maximum width for your page, and making sure everything is centered */
         body { max-width: 1600px; margin: 0 auto; }
+
+        a.white-color{
+            color: #fff;
+        }
+        a#data-protection-agree {
+            color: #fff;
+        }
+        .data-protection-banner .medium-8 {
+            width: 74%;
+            margin-left: 1%;
+            float: left;
+        }
+
+        .data-protection-banner .medium-4 {
+            width: 23%;
+            margin-right: 2%;
+            float: right;
+            text-align: right;
+        }
     </style>
 
     <!-- end CSS-->
@@ -319,7 +338,8 @@
 <script defer="defer" src="//www.ebi.ac.uk/web_guidelines/js/plugins.js"></script>
 <script defer="defer" src="//www.ebi.ac.uk/web_guidelines/js/script.js"></script>
 -->
-<script type="text/javascript" defer="defer" src="//www.ebi.ac.uk/web_guidelines/js/cookiebanner.js"></script>
+<!--<script type="text/javascript" defer="defer" src="//www.ebi.ac.uk/web_guidelines/js/cookiebanner.js"></script>-->
+<script src="#{requestConfigBean.absoluteContextPath}/js/cookie-banner.js" type="text/javascript"></script>
 <script type="text/javascript" defer="defer" src="//www.ebi.ac.uk/web_guidelines/js/foot.js"></script>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
@@ -330,6 +350,7 @@
         if ($("#double-scroll").length > 0){
             $('#double-scroll').doubleScroll();
         }
+        ebi_cookie_banner();
     });
 </script>
 
