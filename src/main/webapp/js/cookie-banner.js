@@ -1,5 +1,5 @@
 function ebi_cookie_banner(){
-    var localFrameworkVersion = '1.2'; // 1.1 or 1.2 or compliance or other
+    var localFrameworkVersion = 'compliance'; // 1.1 or 1.2 or compliance or other
     // if you select compliance or other we will add some helpful
     // CSS styling, but you may need to add some CSS yourself
     var newDataProtectionNotificationBanner = document.createElement('script');
