@@ -44,8 +44,6 @@ public class XrefLinkGenerator {
             return replacePlaceholderWithId(linkContext.getOlsUrl(), "MI:" + identifier);
         } else if (database.equals("pubmed") && !identifier.startsWith("unassigned")) {
             return replacePlaceholderWithId(linkContext.getEuropePubmedCentralUrl(), identifier);
-        } else if (database.equals("hierarchView")) {
-            return replacePlaceholderWithId(linkContext.getHierarchViewUrl(), identifier);
         } else if ( linkContext.containsKey(database) || linkContext.containsKey(database + "." + linkType) ) {
             // here, the database is the same as the key in the props file (e.g. uniprotkb, intact...)
             String url = null;

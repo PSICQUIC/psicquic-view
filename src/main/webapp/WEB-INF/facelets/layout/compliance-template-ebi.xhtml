@@ -43,7 +43,7 @@
 
     <!-- for production the above can be replaced with -->
     <link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/mini/ebi-fluid-embl.css"/>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
+    <link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/css/custom-jquery-ui.css"/>
     <!-- you can replace this with [projectname]-colours.css. See http://frontier.ebi.ac.uk/web/style/colour for details of how to do this -->
     <!-- also inform ES so we can host your colour palette file -->
     <!--<link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/develop/embl-petrol-colours.css" type="text/css" media="screen">-->
@@ -106,7 +106,7 @@
 </div>
 
 <!-- cytoscape and jquery  -->
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
 <script type="text/javascript" src="#{requestConfigBean.absoluteContextPath}/js/intact.js"></script>
 
 <script type="text/javascript" src="#{requestConfigBean.absoluteContextPath}/cytoscapeweb_v1.0.4/js/min/AC_OETags.min.js"></script>
@@ -230,7 +230,7 @@
                          whichever one will show up last...
                          For example: -->
                     <!--<li class="functional"><a href="#" class="icon icon-functional" data-icon="l">Login</a></li>-->
-                    <li class="functional"><a href="http://www.ebi.ac.uk/support/index.php?query=intact" class="icon icon-generic" data-icon="\">Feedback</a></li>
+                    <li class="functional"><a href="//www.ebi.ac.uk/support/index.php?query=intact" class="icon icon-generic" data-icon="\">Feedback</a></li>
                     <!--<li class="functional"><a href="#" class="icon icon-functional" data-icon="r">Share</a></li>-->
                 </ul>
             </nav>
@@ -342,7 +342,7 @@
 <script src="#{requestConfigBean.absoluteContextPath}/js/cookie-banner.js" type="text/javascript"></script>
 <script type="text/javascript" defer="defer" src="//www.ebi.ac.uk/web_guidelines/js/foot.js"></script>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 <script type="text/javascript" src="#{requestConfigBean.absoluteContextPath}/js/JQuery-doubleScroll.js"></script>
 
 <script type="text/javascript">
