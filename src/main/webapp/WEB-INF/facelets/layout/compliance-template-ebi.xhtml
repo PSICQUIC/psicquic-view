@@ -339,7 +339,6 @@
 <script defer="defer" src="//www.ebi.ac.uk/web_guidelines/js/script.js"></script>
 -->
 <!--<script type="text/javascript" defer="defer" src="//www.ebi.ac.uk/web_guidelines/js/cookiebanner.js"></script>-->
-<script src="#{requestConfigBean.absoluteContextPath}/js/cookie-banner.js" type="text/javascript"></script>
 <script type="text/javascript"  src="//www.ebi.ac.uk/web_guidelines/js/foot.js"></script>
 
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
@@ -350,7 +349,6 @@
         if ($("#double-scroll").length > 0){
             $('#double-scroll').doubleScroll();
         }
-        ebi_cookie_banner();
     });
 </script>
 
@@ -410,6 +408,18 @@
         s.parentNode.insertBefore(ga, s);
     })();
 
+</script>
+
+<script type="text/javascript">
+    var localFrameworkVersion = 'compliance'; // 1.1 or 1.2 or compliance or other
+    // if you select compliance or other we will add some helpful
+    // CSS styling, but you may need to add some CSS yourself
+    var newDataProtectionNotificationBanner = document.createElement('script');
+    newDataProtectionNotificationBanner.src = 'https://ebi.emblstatic.net/web_guidelines/EBI-Framework/v1.3/js/ebi-global-includes/script/5_ebiFrameworkNotificationBanner.js?legacyRequest='+localFrameworkVersion;
+    document.head.appendChild(newDataProtectionNotificationBanner);
+    newDataProtectionNotificationBanner.onload = function() {
+        ebiFrameworkRunDataProtectionBanner(); // invoke the banner
+    };
 </script>
 
 </body>
