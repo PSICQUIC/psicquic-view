@@ -12,5 +12,5 @@ mvn jetty:run
 
 Then, browse to:
 ```
-http://localhost:19095/psicquic/view/home.xhtml
+http://localhost:19095/psicquic/view/
 ```
