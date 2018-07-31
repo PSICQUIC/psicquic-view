@@ -38,7 +38,11 @@
                                                 actionListener="#{columnContext.selectedBasicColumns}"
                                                 partialTriggers="columnsSelection"/>
                                 <tr:outputFormatted value="&#160;&#160;&lt;b>|&lt;/b>&#160;&#160;"/>
-                                <tr:commandLink id="selectDeafaultColumns" text="Default"
+                                <tr:commandLink id="selectCausalColumns" text="Causal"
+                                                actionListener="#{columnContext.selectedCausalColumns}"
+                                                partialTriggers="columnsSelection"/>
+                                <tr:outputFormatted value="&#160;&#160;&lt;b>|&lt;/b>&#160;&#160;"/>
+                                <tr:commandLink id="selectDefaultColumns" text="Default"
                                                 actionListener="#{columnContext.selectedDefaultColumns}"
                                                 partialTriggers="columnsSelection"/>
                                 <tr:outputFormatted value="&#160;&#160;&lt;b>|&lt;/b>&#160;&#160;"/>
@@ -689,6 +693,46 @@
                                       onlyText="true"/>
                 </h:panelGroup>
 
+            </tr:column>
+
+            <tr:column id="c45" headerText="#{messages['moleculeA.bioeffect']}"
+                       styleClass="#{binaryInteraction.negativeInteraction ? 'cellTextNegativeInteraction':'cellTextCompound'}"
+                       rendered="#{columnContext.selectedColumnsMap['moleculeA.bioeffect']}"
+            >
+                <h:panelGroup rendered="#{binaryInteraction.interactorA != null}">
+                    <psv:xrefDataList value="${binaryInteraction.interactorA.biologicalEffects}"
+                                      itemPerLine="true"
+                                      onlyText="true"/>
+
+                </h:panelGroup>
+
+            </tr:column>
+
+            <tr:column id="c46" headerText="#{messages['moleculeB.bioeffect']}"
+                       styleClass="#{binaryInteraction.negativeInteraction ? 'cellTextNegativeInteraction':'cellTextTarget'}"
+                       rendered="#{columnContext.selectedColumnsMap['moleculeB.bioeffect']}"
+            >
+
+                <h:panelGroup rendered="#{binaryInteraction.interactorB != null}">
+                    <psv:xrefDataList value="${binaryInteraction.interactorB.biologicalEffects}"
+                                      itemPerLine="true"
+                                      onlyText="true"/>
+                </h:panelGroup>
+
+            </tr:column>
+
+            <tr:column id="c47" headerText="#{messages['interaction.causalmechanism']}"
+                       styleClass="#{binaryInteraction.negativeInteraction ? 'cellTextNegativeInteraction':'cellTextInteraction'}"
+                       rendered="#{columnContext.selectedColumnsMap['interaction.causalmechanism']}"
+            >
+                <psv:xrefDataList value="#{binaryInteraction.causalRegulatoryMechanism}" onlyText="true" itemPerLine="true"/>
+            </tr:column>
+
+            <tr:column id="c48" headerText="#{messages['interaction.causalstatement']}"
+                       styleClass="#{binaryInteraction.negativeInteraction ? 'cellTextNegativeInteraction':'cellTextInteraction'}"
+                       rendered="#{columnContext.selectedColumnsMap['interaction.causalstatement']}"
+            >
+                <psv:xrefDataList value="#{binaryInteraction.causalStatement}" onlyText="true" itemPerLine="true"/>
             </tr:column>
 
         </tr:table>

@@ -65,6 +65,9 @@ public class DownloadAllUtils extends DownloadUtils {
 		else if(format.equalsIgnoreCase(PsicquicSimpleClient.MITAB27)){
 			header = MitabWriterUtils.buildHeader(PsimiTabVersion.v2_7);
 		}
+		else if(format.equalsIgnoreCase(PsicquicSimpleClient.MITAB28)){
+			header = MitabWriterUtils.buildHeader(PsimiTabVersion.v2_8);
+		}
 
 		return header;
 	}
@@ -76,6 +79,7 @@ public class DownloadAllUtils extends DownloadUtils {
 		contentTypeByFormat.put(PsicquicSimpleClient.MITAB25, TEXT_PLAIN);
 		contentTypeByFormat.put(PsicquicSimpleClient.MITAB26, TEXT_PLAIN);
 		contentTypeByFormat.put(PsicquicSimpleClient.MITAB27, TEXT_PLAIN);
+		contentTypeByFormat.put(PsicquicSimpleClient.MITAB28, TEXT_PLAIN);
 		contentTypeByFormat.put(PsicquicSimpleClient.COUNT, TEXT_PLAIN);
 
 	}
@@ -87,6 +91,7 @@ public class DownloadAllUtils extends DownloadUtils {
 		extensionByFormat.put(PsicquicSimpleClient.MITAB25, TXT);
 		extensionByFormat.put(PsicquicSimpleClient.MITAB26, TXT);
 		extensionByFormat.put(PsicquicSimpleClient.MITAB27, TXT);
+		extensionByFormat.put(PsicquicSimpleClient.MITAB28, TXT);
 		extensionByFormat.put(PsicquicSimpleClient.COUNT, TXT);
 
 	}

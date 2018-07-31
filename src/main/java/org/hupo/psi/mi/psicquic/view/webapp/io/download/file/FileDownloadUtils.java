@@ -69,6 +69,9 @@ public class FileDownloadUtils extends DownloadUtils {
 		else if(format.equalsIgnoreCase(PsicquicSimpleClient.MITAB27)){
 			header = MitabWriterUtils.buildHeader(PsimiTabVersion.v2_7);
 		}
+		else if(format.equalsIgnoreCase(PsicquicSimpleClient.MITAB28)){
+			header = MitabWriterUtils.buildHeader(PsimiTabVersion.v2_8);
+		}
 
 		return header;
 	}
@@ -81,6 +84,7 @@ public class FileDownloadUtils extends DownloadUtils {
 		contentTypeByFormat.put(PsicquicSimpleClient.MITAB25, TEXT_PLAIN);
 		contentTypeByFormat.put(PsicquicSimpleClient.MITAB26, TEXT_PLAIN);
 		contentTypeByFormat.put(PsicquicSimpleClient.MITAB27, TEXT_PLAIN);
+		contentTypeByFormat.put(PsicquicSimpleClient.MITAB28, TEXT_PLAIN);
 		contentTypeByFormat.put(PsicquicSimpleClient.XGMML, APPLICATION_XGMML);
 		contentTypeByFormat.put(PsicquicSimpleClient.BIOPAX, TEXT_XML);
 		contentTypeByFormat.put(PsicquicSimpleClient.BIOPAX_L2, TEXT_XML);
@@ -101,6 +105,7 @@ public class FileDownloadUtils extends DownloadUtils {
 		extensionByFormat.put(PsicquicSimpleClient.MITAB25, TXT);
 		extensionByFormat.put(PsicquicSimpleClient.MITAB26, TXT);
 		extensionByFormat.put(PsicquicSimpleClient.MITAB27, TXT);
+		extensionByFormat.put(PsicquicSimpleClient.MITAB28, TXT);
 		extensionByFormat.put(PsicquicSimpleClient.XGMML, XGMML);
 		extensionByFormat.put(PsicquicSimpleClient.BIOPAX, XML);
 		extensionByFormat.put(PsicquicSimpleClient.BIOPAX_L2, XML);
