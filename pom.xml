@@ -45,7 +45,7 @@
         <spring.batch.version>2.1.8.RELEASE</spring.batch.version>
         <spring.security.version>3.1.2.RELEASE</spring.security.version>
 
-        <psicquic.clustering>1.0.4</psicquic.clustering>
+        <psicquic.clustering>1.0.5-SNAPSHOT</psicquic.clustering>
         <!--Pull by psicquic clustering. Transitive dependency-->
         <!--<psicquic.registry.client.version>1.1.1</psicquic.registry.client.version>-->
     </properties>
