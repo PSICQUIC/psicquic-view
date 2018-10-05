@@ -55,7 +55,7 @@ public class FileDownloadController extends BaseController {
 			{"xml25", "biopax", "biopax-L2", "biopax-L3", "rdf-xml", "rdf-xml-abbrev", "rdf-n3", "rdf-turtle"}));
 
 	final private static List<String> formatsForNegativeQueries = new ArrayList<String>(Arrays.asList(new String[]
-			{"tab26", "tab27", "xml25"}));
+			{"tab26", "tab27", "tab28", "xml25"}));
 
 	public FileDownloadController() {
 		this.selectItems = new ArrayList<SelectItem>();
@@ -66,7 +66,7 @@ public class FileDownloadController extends BaseController {
 
 		if(userQuery.isIncludeNegativeQuery()){
 			String message = "Your results may contain negative interactions.";
-			String detail = "They can only be exported in MITAB 2.6, MITAB 2.7 and XML 2.5.";
+			String detail = "They can only be exported in MITAB 2.6, MITAB 2.7, MITAB 2.8 and XML 2.5.";
 			addInfoMessage(message, detail);
 		}
 

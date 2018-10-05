@@ -37,7 +37,7 @@ import java.net.SocketTimeoutException;
 import java.util.*;
 
 /**
- * DataModel for dar retreived from PSICQUIC services.
+ * DataModel for data retreived from PSICQUIC services.
  *
  * @author Bruno Aranda (baranda@ebi.ac.uk)
  * @version $Id$

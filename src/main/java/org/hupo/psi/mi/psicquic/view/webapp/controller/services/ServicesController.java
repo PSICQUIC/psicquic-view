@@ -206,6 +206,9 @@ public class ServicesController extends BaseController implements java.io.Serial
             } else if (format.contentEquals(PsicquicSimpleClient.MITAB27) && (27 > version)) {
                 sVersion = PsicquicSimpleClient.MITAB27;
                 version = 27;
+            } else if (format.contentEquals(PsicquicSimpleClient.MITAB28) && (28 > version)) {
+                sVersion = PsicquicSimpleClient.MITAB28;
+                version = 28;
             }
         }
 

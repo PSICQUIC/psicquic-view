@@ -66,6 +66,7 @@ public class DownloadAllController extends BaseController {
 		this.selectAllItems.add(new SelectItem("tab25", rb.getString("tab25").trim(), rb.getString("tab25").trim()));
 		this.selectAllItems.add(new SelectItem("tab26", rb.getString("tab26").trim(), rb.getString("tab26").trim(), true));
 		this.selectAllItems.add(new SelectItem("tab27", rb.getString("tab27").trim(), rb.getString("tab27").trim(), true));
+		this.selectAllItems.add(new SelectItem("tab28", rb.getString("tab28").trim(), rb.getString("tab28").trim(), true));
 
 		setSelectedFormat(format);
 	}

@@ -72,6 +72,9 @@ public class ClusteringDownloadUtils extends DownloadUtils {
 		else if(format.equalsIgnoreCase(PsicquicSolrServer.RETURN_TYPE_MITAB27)){
 			header = MitabWriterUtils.buildHeader(PsimiTabVersion.v2_7);
 		}
+		else if(format.equalsIgnoreCase(PsicquicSolrServer.RETURN_TYPE_MITAB28)){
+			header = MitabWriterUtils.buildHeader(PsimiTabVersion.v2_8);
+		}
 
 		return header;
 	}
@@ -84,6 +87,7 @@ public class ClusteringDownloadUtils extends DownloadUtils {
 		contentTypeByFormat.put(PsicquicSolrServer.RETURN_TYPE_MITAB25, TEXT_PLAIN);
 		contentTypeByFormat.put(PsicquicSolrServer.RETURN_TYPE_MITAB26, TEXT_PLAIN);
 		contentTypeByFormat.put(PsicquicSolrServer.RETURN_TYPE_MITAB27, TEXT_PLAIN);
+		contentTypeByFormat.put(PsicquicSolrServer.RETURN_TYPE_MITAB28, TEXT_PLAIN);
 		contentTypeByFormat.put(PsicquicSolrServer.RETURN_TYPE_COUNT, TEXT_PLAIN);
 		contentTypeByFormat.put(PsicquicSolrServer.RETURN_TYPE_DEFAULT, TEXT_PLAIN);
 
@@ -97,6 +101,7 @@ public class ClusteringDownloadUtils extends DownloadUtils {
 		extensionByFormat.put(PsicquicSolrServer.RETURN_TYPE_MITAB25, TXT);
 		extensionByFormat.put(PsicquicSolrServer.RETURN_TYPE_MITAB26, TXT);
 		extensionByFormat.put(PsicquicSolrServer.RETURN_TYPE_MITAB27, TXT);
+		extensionByFormat.put(PsicquicSolrServer.RETURN_TYPE_MITAB28, TXT);
 		extensionByFormat.put(PsicquicSolrServer.RETURN_TYPE_COUNT, TXT);
 		extensionByFormat.put(PsicquicSolrServer.RETURN_TYPE_DEFAULT, TXT);
 

@@ -112,7 +112,8 @@ public class UserQuery extends BaseController {
                 new SearchField("ftype", "Interactor feature (Ex: binding site)"),
                 new SearchField("pmethod", "Interactor identification method (Ex: western blot)"),
                 new SearchField("stc", "Stoichiometry (Ex: true)", listStoichiometrySelectItems()),
-                new SearchField("param", "Interaction parameter (Ex: true)", listParametersSelectItems())
+                new SearchField("param", "Interaction parameter (Ex: true)", listParametersSelectItems()),
+                new SearchField("causalstatement", "Causal Statement (Ex: up regulates)")
 		};
 
 

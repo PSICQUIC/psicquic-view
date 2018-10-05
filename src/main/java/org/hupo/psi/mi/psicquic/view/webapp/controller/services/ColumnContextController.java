@@ -33,6 +33,7 @@ public class ColumnContextController implements Serializable {
 
     private static String COOKIE_MINIMAL_VALUE = "min cols";
     private static String COOKIE_BASIC_VALUE = "basic cols";
+    private static String COOKIE_CAUSAL_VALUE = "causal cols";
     private static String COOKIE_DEFAULT_VALUE = "def cols";
     private static String COOKIE_ALL_VALUE = "all cols";
 
@@ -80,6 +81,10 @@ public class ColumnContextController implements Serializable {
     private static String MOLECULE_B_STOICHIOMETRY = "moleculeB.stoichiometry";
     private static String MOLECULE_A_PART_IDENT_METHOD = "moleculeA.partidentmethod";
     private static String MOLECULE_B_PART_IDENT_METHOD = "moleculeB.partidentmethod";
+    private static String MOLECULE_A_BIOEFFECT = "moleculeA.bioeffect";
+    private static String MOLECULE_B_BIOEFFECT = "moleculeB.bioeffect";
+    private static String INTERACTION_CAUSAL_REG_MECHANISM = "interaction.causalmechanism";
+    private static String INTERACTION_CAUSAL_STATEMENT = "interaction.causalstatement";
 
     private boolean showTypeRoleIcons;
     private Map<String, Boolean> selectedColumnsMap;
@@ -97,6 +102,8 @@ public class ColumnContextController implements Serializable {
                 selectMinimalColumns();
             } else if (COOKIE_BASIC_VALUE.equals(colsCookie)) {
                 selectBasicColumns();
+            } else if (COOKIE_CAUSAL_VALUE.equals(colsCookie)) {
+                selectCausalColumns();
             } else if (COOKIE_DEFAULT_VALUE.equals(colsCookie)) {
                 selectDefaultColumns();
             } else if (COOKIE_ALL_VALUE.equals(colsCookie)) {
@@ -137,7 +144,6 @@ public class ColumnContextController implements Serializable {
                 MOLECULE_A_NAME, MOLECULE_B_NAME, MOLECULE_A_ALIASES, MOLECULE_B_ALIASES, MOLECULE_A_SPECIES,
                 MOLECULE_B_SPECIES, INTERACTION_TYPE, FIRST_AUTHOR, PUBMED_IDENTIFIER, CONFIDENCE_VALUE,
                 MOLECULE_A_EXPERIMENTAL_ROLE, MOLECULE_B_EXPERIMENTAL_ROLE, INTERACTION_DETECTION_METHOD
-
         };
     }
 
@@ -145,6 +151,12 @@ public class ColumnContextController implements Serializable {
         return new String[]{
                 MOLECULE_A_NAME, MOLECULE_B_NAME,
                 INTERACTION_DETECTION_METHOD, INTERACTION_AC
+        };
+    }
+
+    private String[] getCausalColumns() {
+        return new String[]{
+                MOLECULE_A_NAME, MOLECULE_B_NAME, INTERACTION_TYPE, INTERACTION_CAUSAL_REG_MECHANISM, INTERACTION_CAUSAL_STATEMENT
         };
     }
 
@@ -159,7 +171,8 @@ public class ColumnContextController implements Serializable {
                 INTERACTION_ANNOTATIONS, HOST_ORGANISM, INTERACTION_PARAMETERS, INTERACTION_CREATION_DATE,
                 INTERACTION_UPDATE_DATE, MOLECULE_A_CHECKSUM, MOLECULE_B_CHECKSUM, INTERACTION_CHECKSUM,
                 INTERACTION_IS_NEGATIVE, MOLECULE_A_FEATURES, MOLECULE_B_FEATURES, MOLECULE_A_STOICHIOMETRY,
-                MOLECULE_B_STOICHIOMETRY, MOLECULE_A_PART_IDENT_METHOD, MOLECULE_B_PART_IDENT_METHOD
+                MOLECULE_B_STOICHIOMETRY, MOLECULE_A_PART_IDENT_METHOD, MOLECULE_B_PART_IDENT_METHOD,
+                MOLECULE_A_BIOEFFECT, MOLECULE_B_BIOEFFECT, INTERACTION_CAUSAL_REG_MECHANISM, INTERACTION_CAUSAL_STATEMENT
         };
     }
 
@@ -198,6 +211,17 @@ public class ColumnContextController implements Serializable {
         }
 
         writeCookie(COOKIE_COLS_NAME, COOKIE_BASIC_VALUE);
+    }
+
+    public void selectCausalColumns() {
+        this.selectedColumns = getCausalColumns();
+
+        selectedColumnsMap.clear();
+        for (String columnKey : selectedColumns) {
+            selectedColumnsMap.put(columnKey, true);
+        }
+
+        writeCookie(COOKIE_COLS_NAME, COOKIE_CAUSAL_VALUE);
     }
 
     public void selectMinimalColumns() {
@@ -260,6 +284,10 @@ public class ColumnContextController implements Serializable {
 
     public void selectedBasicColumns(ActionEvent actionEvent) {
         selectBasicColumns();
+    }
+
+    public void selectedCausalColumns(ActionEvent actionEvent) {
+        selectCausalColumns();
     }
 
     public void selectedDefaultColumns(ActionEvent actionEvent) {
