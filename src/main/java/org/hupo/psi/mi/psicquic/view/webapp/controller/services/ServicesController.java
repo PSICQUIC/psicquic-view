@@ -1,5 +1,7 @@
 package org.hupo.psi.mi.psicquic.view.webapp.controller.services;
 
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.myfaces.orchestra.conversation.annotations.ConversationName;
@@ -8,6 +10,7 @@ import org.hupo.psi.mi.psicquic.registry.ServiceType;
 import org.hupo.psi.mi.psicquic.view.webapp.application.PsicquicThreadConfig;
 import org.hupo.psi.mi.psicquic.view.webapp.controller.BaseController;
 import org.hupo.psi.mi.psicquic.view.webapp.controller.QueryHits;
+import org.hupo.psi.mi.psicquic.view.webapp.controller.application.ImexPreviewLinkGenerator;
 import org.hupo.psi.mi.psicquic.view.webapp.controller.search.UserQuery;
 import org.hupo.psi.mi.psicquic.view.webapp.model.PsicquicResultDataModel;
 import org.hupo.psi.mi.psicquic.view.webapp.util.ServiceByNameComparator;
@@ -23,7 +26,10 @@ import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -42,11 +48,16 @@ public class ServicesController extends BaseController implements java.io.Serial
     private static final int UNEXPECTED_ERROR = -2;
     private static final int TIME_OUT_EXCEPTION = -1;
 
+    private static final HttpClient client = new HttpClient();
+
     @Autowired
     private transient ApplicationContext applicationContext;
 
     @Autowired
     private UserQuery userQuery;
+
+    @Autowired
+    private ImexPreviewLinkGenerator imexPreviewLinkGenerator;
 
 
     private List<QueryHits> services = null;
@@ -54,6 +65,8 @@ public class ServicesController extends BaseController implements java.io.Serial
 
     private int selectedResults = 0;
     private int totalResults = 0;
+
+    private boolean isValidImexPreview = false;
 
     private List<Future<?>> runningTasks;
     private QueryHits selectedService;
@@ -156,20 +169,38 @@ public class ServicesController extends BaseController implements java.io.Serial
 
         for (final QueryHits service : services) {
             if (service.isActive() && service.isChecked()) {
-                Runnable runnable = new Runnable() {
+                runningTasks.add(executorService.submit(new Runnable() {
+                    @Override
                     public void run() {
-                        int count = countInPsicquicService(service, filteredSearchQuery);
+                        int count = ServicesController.this.countInPsicquicService(service, filteredSearchQuery);
                         service.setHits(count);
+                        ServicesController.this.isValidImexPreview = false;
                         if (count < 0) {
                             service.setChecked(false);
                         }
                     }
-                };
-                runningTasks.add(executorService.submit(runnable));
+                }));
             }
         }
 
         checkAndResumePsicquicTasks();
+
+        for (final QueryHits service : services) {
+            if (service.isActive() && service.isChecked() && service.getHits() > 0) return;
+        }
+        if (userQuery.isIMEXQuery()) {
+            imexPreviewLinkGenerator.setImexId(userQuery.getSearchQuery());
+            GetMethod request = new GetMethod(imexPreviewLinkGenerator.generateURL(ImexPreviewLinkGenerator.Format.tab25.toString()));
+            try {
+                int response = client.executeMethod(request);
+                ServicesController.this.isValidImexPreview = response == 200;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } finally {
+                request.releaseConnection();
+            }
+        }
+
     }
 
     public void loadTableResults() {
@@ -252,7 +283,7 @@ public class ServicesController extends BaseController implements java.io.Serial
             log.warn("Error while building results based on the query: '"
                     + query + "'" + " SERVICE (" + service.getName() + ") RESPONSE: " + e.getMessage());
 
-        }catch (Throwable e){
+        } catch (Throwable e) {
             psicquicCount = UNEXPECTED_ERROR;
             //TODO Check if it is a 2.7 query and explain
             log.warn("Error while building results based on the query: '"
@@ -265,7 +296,7 @@ public class ServicesController extends BaseController implements java.io.Serial
 
     private void checkAndResumePsicquicTasks() {
 
-        for (Future f : runningTasks) {
+        for (Future<?> f : runningTasks) {
             int threadTimeOut = 5;
             try {
                 f.get(threadTimeOut, TimeUnit.SECONDS);
@@ -274,18 +305,13 @@ public class ServicesController extends BaseController implements java.io.Serial
                 if (!f.isCancelled()) {
                     f.cancel(false);
                 }
-            } catch (ExecutionException e) {
-                log.error("The psicquic task could not be executed, we cancel the task.", e);
-                if (!f.isCancelled()) {
-                    f.cancel(false);
-                }
-            }catch (TimeoutException e) {
+            } catch (TimeoutException e) {
                 log.error("Service task stopped because of time out " + threadTimeOut + "seconds.");
 
                 if (!f.isCancelled()) {
                     f.cancel(false);
                 }
-            }catch (Throwable e) {
+            } catch (Throwable e) {
                 log.error("The psicquic task could not be executed, we cancel the task.", e);
                 if (!f.isCancelled()) {
                     f.cancel(false);
@@ -317,7 +343,7 @@ public class ServicesController extends BaseController implements java.io.Serial
     public int getSelectedResults() {
         selectedResults = 0;
 
-        if (services != null){
+        if (services != null) {
             for (QueryHits service : services) {
                 if (service != null) {
                     if (service.isChecked() && service.getHits() >= 0) {
@@ -370,5 +396,9 @@ public class ServicesController extends BaseController implements java.io.Serial
 
     public String getMitabUrl() {
         return mitabUrl;
+    }
+
+    public boolean isValidImexPreview() {
+        return isValidImexPreview;
     }
 }
