@@ -30,12 +30,12 @@ public class ImexPreviewLinkGenerator {
         imexPreviewUrl = props.getProperty("imex.preview.url");
     }
 
-    public URI generateURI(String format) {
-        return URI.create(generateURL(format));
+    public URI generateURI() {
+        return URI.create(generateURL());
     }
 
-    public String generateURL(String format) {
-        return imexPreviewUrl.replaceAll("\\{0\\}", imexId).replaceAll("\\{1\\}", format);
+    public String generateURL() {
+        return imexPreviewUrl.replaceAll("\\{0\\}", imexId);
     }
 
     public enum Format {
@@ -95,7 +95,7 @@ public class ImexPreviewLinkGenerator {
     public List<Format> getFormats() {
         List<Format> visible = Format.visible();
         for (Format format : visible) {
-            format.setUrl(generateURL(format.toString()));
+            format.setUrl(generateURL());
         }
         return visible;
     }
