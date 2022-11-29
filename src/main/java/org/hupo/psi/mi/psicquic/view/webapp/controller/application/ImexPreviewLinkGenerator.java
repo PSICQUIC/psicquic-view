@@ -13,7 +13,8 @@ import java.util.Properties;
 public class ImexPreviewLinkGenerator {
 
     private static final String PROPERTIES = "/org/hupo/psi/mi/psicquic/binarysearch/imex-preview.properties";
-    private String imexPreviewUrl;
+    private String imexPreviewSearchUrl;
+    private String imexPreviewExportUrl;
 
     private String imexId;
 
@@ -27,15 +28,24 @@ public class ImexPreviewLinkGenerator {
             throw new RuntimeException("Problems reading imex preview file from resource: " + PROPERTIES);
         }
 
-        imexPreviewUrl = props.getProperty("imex.preview.url");
+        imexPreviewSearchUrl = props.getProperty("imex.preview.search.url");
+        imexPreviewExportUrl = props.getProperty("imex.preview.export.url");
     }
 
-    public URI generateURI() {
-        return URI.create(generateURL());
+    public URI generateSearchURI() {
+        return URI.create(generateSearchURL());
     }
 
-    public String generateURL() {
-        return imexPreviewUrl.replaceAll("\\{0\\}", imexId);
+    public String generateSearchURL() {
+        return imexPreviewSearchUrl.replaceAll("\\{0\\}", imexId);
+    }
+
+    public URI generateExportURI(String format) {
+        return URI.create(generateExportURL(format));
+    }
+
+    public String generateExportURL(String format) {
+        return imexPreviewExportUrl.replaceAll("\\{0\\}", imexId).replaceAll("\\{1\\}", format);
     }
 
     public enum Format {
@@ -95,7 +105,7 @@ public class ImexPreviewLinkGenerator {
     public List<Format> getFormats() {
         List<Format> visible = Format.visible();
         for (Format format : visible) {
-            format.setUrl(generateURL());
+            format.setUrl(generateExportURL(format.toString()));
         }
         return visible;
     }
