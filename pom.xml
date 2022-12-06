@@ -6,7 +6,7 @@
     <groupId>org.hupo.psi.mi.psicquic</groupId>
     <artifactId>psicquic-view</artifactId>
     <packaging>war</packaging>
-    <version>1.6.0-SNAPSHOT</version>
+    <version>1.6.1</version>
 
     <name>PSI :: PSICQUIC View</name>
 
