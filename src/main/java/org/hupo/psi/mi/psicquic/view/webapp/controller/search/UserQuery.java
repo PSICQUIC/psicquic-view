@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * User query object wrapper.
@@ -42,6 +43,8 @@ import java.util.Map;
 public class UserQuery extends BaseController {
 
     public static final String STAR_QUERY = "*:*";
+
+    public static final Pattern IMEX_PATTERN = Pattern.compile("IM-\\d+");
 
     @Autowired
     private PsicquicViewConfig config;
@@ -180,9 +183,16 @@ public class UserQuery extends BaseController {
     public boolean isWildcardQuery() {
         return isWildcardQuery(searchQuery);
     }
-
     private boolean isWildcardQuery(String query) {
         return (query == null || query.trim().length() == 0 || "*".equals(query) || STAR_QUERY.equals(query));
+    }
+
+    public boolean isIMEXQuery() {
+        return isIMEXQuery(searchQuery);
+    }
+
+    private boolean isIMEXQuery(String query) {
+        return query != null && query.trim().length() != 0 && IMEX_PATTERN.matcher(query).matches();
     }
 
     private String surroundByBracesIfNecessary(String query) {
