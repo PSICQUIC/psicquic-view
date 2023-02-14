@@ -46,8 +46,6 @@
         <spring.security.version>3.2.10.RELEASE</spring.security.version>
 
         <psicquic.clustering>1.5.0-SNAPSHOT</psicquic.clustering>
-        <!--Pull by psicquic clustering. Transitive dependency-->
-        <!--<psicquic.registry.client.version>1.4.0</psicquic.registry.client.version>-->
     </properties>
 
     <build>
@@ -117,16 +115,18 @@
 
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
-                <artifactId>maven-jetty-plugin</artifactId>
-                <version>6.1.16</version>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>7.2.0.RC0</version>
                 <configuration>
                     <connectors>
-                        <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
                             <port>${jetty.port}</port>
                         </connector>
                     </connectors>
                     <scanIntervalSeconds>10</scanIntervalSeconds>
-                    <contextPath>${appRoot}/${jetty.context}</contextPath>
+                    <webAppConfig>
+                        <contextPath>${appRoot}/${jetty.context}</contextPath>
+                    </webAppConfig>
                 </configuration>
             </plugin>
             <plugin>
@@ -148,44 +148,12 @@
             <groupId>org.hupo.psi.mi.psicquic</groupId>
             <artifactId>psicquic-clustering</artifactId>
             <version>${psicquic.clustering}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.geronimo.specs</groupId>
-                    <artifactId>geronimo-servlet_2.5_spec</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.mortbay.jetty</groupId>
-                    <artifactId>servlet-api</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>1.2.143</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
-            <version>1.4</version>
-        </dependency>
-
-        <!-- other -->
-        <dependency>
-            <groupId>xerces</groupId>
-            <artifactId>xercesImpl</artifactId>
-            <version>2.10.0</version>
-        </dependency>
-        <dependency>
-            <groupId>concurrent</groupId>
-            <artifactId>concurrent</artifactId>
-            <version>1.3.4</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
-            <version>2.2.2</version>
+            <version>1.4.197</version>
+            <scope>test</scope>
         </dependency>
 
         <!--This dependency can not be regenerated. Source code not available-->
@@ -268,58 +236,6 @@
             <groupId>org.apache.myfaces.orchestra</groupId>
             <artifactId>myfaces-orchestra-core</artifactId>
             <version>1.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.0.1</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>jsp-api</artifactId>
-            <version>2.2</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.el</groupId>
-            <artifactId>el-api</artifactId>
-            <version>2.2</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <!-- This implementation of EL is the only that solves/works with the bug in primefaces describe
-        here http://forum.primefaces.org/viewtopic.php?f=3&t=16826. This can not be provided because
-        it can be overwritten with the EL implementation of the servlet container -->
-        <dependency>
-            <groupId>org.glassfish.web</groupId>
-            <artifactId>el-impl</artifactId>
-            <version>2.2</version>
-        </dependency>
-
-        <!-- SLF4J -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.6.6</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.6.6</version>
-        </dependency>
-
-        <dependency>
-            <groupId>stax</groupId>
-            <artifactId>stax</artifactId>
-            <version>1.2.0</version>
         </dependency>
 
         <!-- Spring -->
