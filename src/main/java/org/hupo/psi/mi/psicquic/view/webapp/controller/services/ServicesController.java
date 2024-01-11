@@ -190,7 +190,7 @@ public class ServicesController extends BaseController implements java.io.Serial
         }
         if (userQuery.isIMEXQuery()) {
             imexPreviewLinkGenerator.setImexId(userQuery.getSearchQuery());
-            GetMethod request = new GetMethod(imexPreviewLinkGenerator.generateURL(ImexPreviewLinkGenerator.Format.tab25.toString()));
+            GetMethod request = new GetMethod(imexPreviewLinkGenerator.generateSearchURL());
             try {
                 int response = client.executeMethod(request);
                 ServicesController.this.isValidImexPreview = response == 200;
