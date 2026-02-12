@@ -49,7 +49,7 @@
     </properties>
 
     <build>
-        <finalName>${service.name}-view-${project.version}</finalName>
+        <finalName>${service.name}-view</finalName>
 
         <resources>
             <resource>
