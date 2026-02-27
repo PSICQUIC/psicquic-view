@@ -84,6 +84,10 @@ hh-test-deploy:
     NFS_SERVER: hh-isi-srv-vlan1496.ebi.ac.uk
     NFS_PATH: /ifs/public/rw/intact
     KUBE_CONTEXT: hh-intact-test
+  environment:
+    name: hh/test
+    deployment_tier: testing
+    url: http://hh-rke-wp-webadmin-99-worker-1.caas.ebi.ac.uk:31230/psicquic/view
 
 hx-prod-deploy:
   extends: .kubernetes-deploy
@@ -93,6 +97,10 @@ hx-prod-deploy:
     NFS_SERVER: hx-isi-srv-vlan157.ebi.ac.uk
     NFS_PATH: /ifs/public-r/rw/intact
     KUBE_CONTEXT: hx-intact-prod
+  environment:
+    name: hx/prod
+    deployment_tier: production
+    url: http://hx-rke-wp-webadmin-78-worker-1.caas.ebi.ac.uk:31230/psicquic/view
 
 hh-prod-deploy:
   extends: .kubernetes-deploy
@@ -102,3 +110,7 @@ hh-prod-deploy:
     NFS_SERVER: hh-isi-srv-vlan1496.ebi.ac.uk
     NFS_PATH: /ifs/public/rw/intact
     KUBE_CONTEXT: hh-intact-prod
+  environment:
+    name: hh/prod
+    deployment_tier: production
+    url: http://hh-rke-wp-webadmin-102-worker-1.caas.ebi.ac.uk:31230/psicquic/view
