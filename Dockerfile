@@ -20,10 +20,7 @@ ADD /war_files/imex-view.war "/usr/local/tomcat/webapps/intact#imex.war"
 RUN cp -r webapps.dist/ROOT webapps/
 RUN cp -r webapps.dist/manager webapps/
 
-# COPY custom conf files (server.xml, tomcat-users.xml, etc.)
-ADD /config/tomcat-users.xml "/usr/local/tomcat/conf/tomcat-users.xml"
 ADD /config/context.xml "/usr/local/tomcat/conf/context.xml"
-ADD /config/manager-context.xml "/usr/local/tomcat/webapps/manager/META-INF/context.xml"
 
 RUN mkdir /clustering
 RUN mkdir /clustering/psicquic-cache
