@@ -15,7 +15,7 @@ RUN addgroup --gid "$GID" "$USER" \
   --uid "$UID" \
   "$USER"
 
-ADD /war_files/psicquic-view.war "/usr/local/tomcat/webapps/psicquic#view.war"
+ADD /war_files/psicquic-view.war "/usr/local/tomcat/webapps/Tools#webservices#psicquic#view.war"
 ADD /war_files/imex-view.war "/usr/local/tomcat/webapps/intact#imex.war"
 RUN cp -r webapps.dist/ROOT webapps/
 RUN cp -r webapps.dist/manager webapps/
