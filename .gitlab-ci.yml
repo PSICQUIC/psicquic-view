@@ -87,7 +87,7 @@ hh-test-deploy:
   environment:
     name: hh/test
     deployment_tier: testing
-    url: http://hh-rke-wp-webadmin-99-master-1.caas.ebi.ac.uk:31903/psicquic/view
+    url: http://hh-rke-wp-webadmin-99-master-1.caas.ebi.ac.uk:31903/Tools/webservices/psicquic/view
 
 hx-prod-deploy:
   extends: .kubernetes-deploy
@@ -100,7 +100,7 @@ hx-prod-deploy:
   environment:
     name: hx/prod
     deployment_tier: production
-    url: http://hx-rke-wp-webadmin-78-master-1.caas.ebi.ac.uk:31903/psicquic/view
+    url: http://hx-rke-wp-webadmin-78-master-1.caas.ebi.ac.uk:31903/Tools/webservices/psicquic/view
 
 hh-prod-deploy:
   extends: .kubernetes-deploy
@@ -113,4 +113,4 @@ hh-prod-deploy:
   environment:
     name: hh/prod
     deployment_tier: production
-    url: http://hh-rke-wp-webadmin-102-master-1.caas.ebi.ac.uk:31903/psicquic/view
+    url: http://hh-rke-wp-webadmin-102-master-1.caas.ebi.ac.uk:31903/Tools/webservices/psicquic/view
