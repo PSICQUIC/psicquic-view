@@ -67,7 +67,7 @@ spec:
                      if [ ! -d /usr/local/tomcat/webapps/manager/META-INF/context.xml ] ; then cp /tmp/manager-context.xml /usr/local/tomcat/webapps/manager/META-INF/context.xml ; fi ;"
           volumeMounts:
             - name: nfs-rw-volume
-              mountPath: /nfs/public/rw/intact/psicquic/psicquic-view
+              mountPath: /nfs/public/rw/intact
             - name: tomcat-config
               mountPath: /tmp/tomcat-users.xml
               subPath: tomcat-users.xml
