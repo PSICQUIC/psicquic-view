@@ -29,25 +29,25 @@
         <profile>
             <id>psicquic-view-test</id>
             <properties>
-                <clustering.storage.directory>/nfs/public/rw/intact/psicquic/clustering-test/psicquic-cache</clustering.storage.directory>
+                <clustering.storage.directory>/nfs/public/rw/intact/psicquic/psicquic-view/clustering-test/cluster-cache</clustering.storage.directory>
             </properties>
         </profile>
         <profile>
             <id>imex-view-test</id>
             <properties>
-                <clustering.storage.directory>/nfs/public/rw/intact/psicquic/clustering-test/imex-cache</clustering.storage.directory>
+                <clustering.storage.directory>/nfs/public/rw/intact/psicquic/imex-view/clustering-test/cluster-cache</clustering.storage.directory>
             </properties>
         </profile>
         <profile>
             <id>psicquic-view-prod</id>
             <properties>
-                <clustering.storage.directory>/nfs/public/rw/intact/psicquic/clustering/psicquic-cache</clustering.storage.directory>
+                <clustering.storage.directory>/nfs/public/rw/intact/psicquic/psicquic-view/clustering/cluster-cache</clustering.storage.directory>
             </properties>
         </profile>
         <profile>
             <id>imex-view-prod</id>
             <properties>
-                <clustering.storage.directory>/nfs/public/rw/intact/psicquic/clustering/imex-cache</clustering.storage.directory>
+                <clustering.storage.directory>/nfs/public/rw/intact/psicquic/imex-view/clustering/cluster-cache</clustering.storage.directory>
             </properties>
         </profile>
     </profiles>
