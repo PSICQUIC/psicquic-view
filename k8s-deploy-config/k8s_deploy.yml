@@ -87,7 +87,7 @@ spec:
                   name: keystore-config
                   key: keystorePassword
             - name: CATALINA_OPTS
-              value: "-Djavax.net.ssl.trustStore=$(KEYSTORE_PATH) -Djavax.net.ssl.keyStorePassword=$(KEYSTORE_PASSWORD)"
+              value: "-Djavax.net.ssl.trustStore=$(KEYSTORE_PATH) -Djavax.net.ssl.keyStorePassword=$(KEYSTORE_PASSWORD) -Xms2g -Xmx8g -XX:MaxPermSize=512m -XX:+UseConcMarkSweepGC"
             - name: http_proxy
               value: "http://<PROXY_HOST>:3128"
             - name: https_proxy

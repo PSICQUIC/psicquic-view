@@ -306,7 +306,7 @@ public class ServicesController extends BaseController implements java.io.Serial
                     f.cancel(false);
                 }
             } catch (TimeoutException e) {
-                log.error("Service task stopped because of time out " + threadTimeOut + "seconds.");
+                log.error("Service task stopped because of time out " + threadTimeOut + " seconds.");
 
                 if (!f.isCancelled()) {
                     f.cancel(false);

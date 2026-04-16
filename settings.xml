@@ -16,7 +16,6 @@
             <id>psicquic-view</id>
             <properties>
                 <service.name>psicquic</service.name>
-                <clustering.storage.directory>/clustering/psicquic-cache</clustering.storage.directory>
                 <config.file>file:/nfs/public/rw/intact/psicquic/psicquic-view/psicquic-view-conf.properties</config.file>
             </properties>
         </profile>
@@ -24,8 +23,31 @@
             <id>imex-view</id>
             <properties>
                 <service.name>imex</service.name>
-                <clustering.storage.directory>/clustering/imex-cache</clustering.storage.directory>
                 <config.file>file:/nfs/public/rw/intact/psicquic/psicquic-view/imex-view-conf.properties</config.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>psicquic-view-test</id>
+            <properties>
+                <clustering.storage.directory>/nfs/public/rw/intact/psicquic/clustering-test/psicquic-cache</clustering.storage.directory>
+            </properties>
+        </profile>
+        <profile>
+            <id>imex-view-test</id>
+            <properties>
+                <clustering.storage.directory>/nfs/public/rw/intact/psicquic/clustering-test/imex-cache</clustering.storage.directory>
+            </properties>
+        </profile>
+        <profile>
+            <id>psicquic-view-prod</id>
+            <properties>
+                <clustering.storage.directory>/nfs/public/rw/intact/psicquic/clustering/psicquic-cache</clustering.storage.directory>
+            </properties>
+        </profile>
+        <profile>
+            <id>imex-view-prod</id>
+            <properties>
+                <clustering.storage.directory>/nfs/public/rw/intact/psicquic/clustering/imex-cache</clustering.storage.directory>
             </properties>
         </profile>
     </profiles>

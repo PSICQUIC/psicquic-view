@@ -22,11 +22,6 @@ RUN cp -r webapps.dist/manager webapps/
 
 ADD /config/context.xml "/usr/local/tomcat/conf/context.xml"
 
-RUN mkdir /clustering
-RUN mkdir /clustering/psicquic-cache
-RUN mkdir /clustering/imex-cache
-
 RUN chown -R $USER:$USER /usr/local/tomcat
-RUN chown -R $USER:$USER /clustering
 
 CMD ["catalina.sh", "run"]

@@ -209,7 +209,7 @@ public class DownloadAllController extends BaseController {
 					f.cancel(true);
 				}
 			} catch (TimeoutException e) {
-				log.error("Service task stopped because of time out " + threadTimeOut + "seconds.", e);
+				log.error("Service task stopped because of time out " + threadTimeOut + " seconds.", e);
 
 				if (!f.isCancelled()) {
 					f.cancel(true);

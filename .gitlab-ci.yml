@@ -8,20 +8,20 @@ stages:
   - build-docker-image
   - kubernetes-deploy
 
-maven-build:
+.maven-build:
   image: maven:3.6-jdk-11
   stage: build-jar
   before_script:
     - mvn compile install -B -s settings.xml
     - mkdir /builds/intact-ci/psicquic-view/war_files
   script:
-    - mvn clean package -B -s settings.xml -P psicquic-view -Dmaven.test.skip=true
+    - mvn clean package -B -s settings.xml -P $PSICQUIC_MAVEN_PROFILES -Dmaven.test.skip=true
     - mv target/psicquic-view.war war_files/
-    - mvn clean package -B -s settings.xml -P imex-view -Dmaven.test.skip=true
+    - mvn clean package -B -s settings.xml -P $IMEX_MAVEN_PROFILES -Dmaven.test.skip=true
     - mv target/imex-view.war war_files/
     - mvn clean
     - POM_VERSION=$(mvn -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive exec:exec -q)
-    - echo "IMAGE_TAG=$POM_VERSION-$CI_COMMIT_SHORT_SHA" > build.env
+    - echo "IMAGE_TAG=$POM_VERSION-$PROFILE_SUFFIX-$CI_COMMIT_SHORT_SHA" > build.env
   after_script:
     - rm -rf ~/.m2/repository/*
   artifacts:
@@ -32,9 +32,22 @@ maven-build:
       dotenv: build.env
   when: manual
 
-docker-build:
+maven-build-test:
+  extends: .maven-build
+  variables:
+    PSICQUIC_MAVEN_PROFILES: "psicquic-view,psicquic-view-test"
+    IMEX_MAVEN_PROFILES: "imex-view,imex-view-test"
+    PROFILE_SUFFIX: "test"
+
+maven-build-prod:
+  extends: .maven-build
+  variables:
+    PSICQUIC_MAVEN_PROFILES: "psicquic-view,psicquic-view-prod"
+    IMEX_MAVEN_PROFILES: "imex-view,imex-view-prod"
+    PROFILE_SUFFIX: "prod"
+
+.docker-build:
   stage: build-docker-image
-  needs: [ maven-build ]
   before_script:
     - unset DOCKER_HOST
     - unset DOCKER_AUTH_CONFIG
@@ -49,6 +62,14 @@ docker-build:
     - docker push "$CI_REGISTRY_IMAGE:$IMAGE_TAG"
     - docker rmi "$CI_REGISTRY_IMAGE:$IMAGE_TAG"
     - docker logout $CI_REGISTRY
+
+docker-build-test:
+  extends: .docker-build
+  needs: [ maven-build-test ]
+
+docker-build-prod:
+  extends: .docker-build
+  needs: [ maven-build-prod ]
 
 .kubernetes-deploy:
   stage: kubernetes-deploy
@@ -78,7 +99,7 @@ docker-build:
 
 hh-test-deploy:
   extends: .kubernetes-deploy
-  needs: [ maven-build, docker-build ]
+  needs: [ maven-build-test, docker-build-test ]
   variables:
     PROXY_HOST: hh-wwwcache.ebi.ac.uk
     NFS_SERVER: hh-isi-srv-vlan1496.ebi.ac.uk
@@ -87,11 +108,11 @@ hh-test-deploy:
   environment:
     name: hh/test
     deployment_tier: testing
-    url: http://hh-rke-wp-webadmin-99-master-1.caas.ebi.ac.uk:31903/Tools/webservices/psicquic/view
+    url: http://hh-rke-wp-webadmin-99-master-1.caas.ebi.ac.uk:31736/Tools/webservices/psicquic/view
 
 hx-prod-deploy:
   extends: .kubernetes-deploy
-  needs: [ maven-build, docker-build ]
+  needs: [ maven-build-prod, docker-build-prod ]
   variables:
     PROXY_HOST: hx-wwwcache.ebi.ac.uk
     NFS_SERVER: hx-isi-srv-vlan157.ebi.ac.uk
@@ -104,7 +125,7 @@ hx-prod-deploy:
 
 hh-prod-deploy:
   extends: .kubernetes-deploy
-  needs: [ maven-build, docker-build ]
+  needs: [ maven-build-prod, docker-build-prod ]
   variables:
     PROXY_HOST: hh-wwwcache.ebi.ac.uk
     NFS_SERVER: hh-isi-srv-vlan1496.ebi.ac.uk
