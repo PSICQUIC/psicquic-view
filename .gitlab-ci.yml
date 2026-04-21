@@ -94,7 +94,8 @@ docker-build-prod:
     - sed -i -e "s|<NFS_PATH>|$NFS_PATH|g" k8s-deploy-config/k8s_deploy.yml
     - kubectl apply -f k8s-deploy-config/k8s_deploy.yml
     - kubectl rollout restart deployment/psicquic-view-deployment
-    - kubectl get nodes
+    - kubectl rollout status deployment/psicquic-view-deployment --timeout=180s # Wait for rollout to complete
+    - kubectl get pods
   when: manual
 
 hh-test-deploy:
