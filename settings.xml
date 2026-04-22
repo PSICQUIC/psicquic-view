@@ -23,7 +23,7 @@
             <id>imex-view</id>
             <properties>
                 <service.name>imex</service.name>
-                <config.file>file:/nfs/public/rw/intact/psicquic/psicquic-view/imex-view-conf.properties</config.file>
+                <config.file>file:/nfs/public/rw/intact/psicquic/imex-view/imex-view-conf.properties</config.file>
             </properties>
         </profile>
         <profile>
