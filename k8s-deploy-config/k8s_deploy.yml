@@ -1,0 +1,133 @@
+# Specifies what version of K8s you want to use
+apiVersion: v1
+# A service is used to expose your Deployment to the external access
+kind: Service
+metadata:
+  name: psicquic-view-service
+spec:
+  ports:
+    - port: 31230
+      protocol: TCP
+      # The port on your Deployment which it will expose
+      targetPort: 8080
+  selector:
+    # Selects the disease-portal-view Deployment to attach the Service to
+    app: psicquic-view
+    # Tell K8s this wants to expose an external port
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: psicquic-view-deployment
+spec:
+  selector:
+    matchLabels:
+      app: psicquic-view
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: psicquic-view
+    spec:
+      securityContext:
+        runAsUser: 7610
+        runAsGroup: 1489
+      terminationGracePeriodSeconds: 10
+      restartPolicy: Always
+      containers:
+        - name: psicquic-view
+          # Pull the image which contains psicquic-view webservice and the built assets from EBI's dockerhub
+          image: <IMAGE_TAG>
+          imagePullPolicy: IfNotPresent
+          ports:
+            # We are using psicquic-view webservice config which serves on port 8080
+            - containerPort: 8080
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - "/bin/sh"
+                  - "-c"
+                  - "if [ ! -d /usr/local/tomcat/conf/tomcat-users.xml ] ; then cp /tmp/tomcat-users.xml /usr/local/tomcat/conf/tomcat-users.xml ; fi ; \
+                     if [ ! -d /usr/local/tomcat/webapps/manager/META-INF/context.xml ] ; then cp /tmp/manager-context.xml /usr/local/tomcat/webapps/manager/META-INF/context.xml ; fi ;"
+          volumeMounts:
+            - name: nfs-rw-volume
+              mountPath: /nfs/public/rw/intact
+            - name: tomcat-config
+              mountPath: /tmp/tomcat-users.xml
+              subPath: tomcat-users.xml
+            - name: tomcat-config
+              mountPath: /tmp/manager-context.xml
+              subPath: manager-context.xml
+          env:
+            - name: KEYSTORE_PATH
+              valueFrom:
+                configMapKeyRef:
+                  name: keystore-config
+                  key: keystorePath
+            - name: KEYSTORE_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: keystore-config
+                  key: keystorePassword
+            - name: CATALINA_OPTS
+              value: "-Djavax.net.ssl.trustStore=$(KEYSTORE_PATH) -Djavax.net.ssl.keyStorePassword=$(KEYSTORE_PASSWORD) -Xms2g -Xmx8g -XX:MaxPermSize=512m -XX:+UseConcMarkSweepGC"
+            - name: http_proxy
+              value: "http://<PROXY_HOST>:3128"
+            - name: https_proxy
+              value: "http://<PROXY_HOST>:3128"
+            - name: JAVA_OPTS
+              value: "-Dhttp.proxyHost=<PROXY_HOST> -Dhttp.proxyPort=3128 -Dhttps.proxyHost=<PROXY_HOST> -Dhttps.proxyPort=3128 \
+                      -Dsun.net.client.defaultConnectTimeout=10000 -Dsun.net.client.defaultReadTimeout=10000 -Dsun.net.http.retryPost=false"
+      volumes:
+        - name: nfs-rw-volume
+          nfs:
+            # URL for the NFS server
+            server: <NFS_SERVER>
+            path: <NFS_PATH>
+        - name: tomcat-config
+          configMap:
+            name: tomcat-config
+      imagePullSecrets:
+        # Provided by GitLab, this allows K8s to connect to dockerhub.ebi.ac.uk
+        - name: gitlab-registry
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: psicquic-view-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /Tools/webservices/psicquic/view
+        pathType: Prefix
+        backend:
+          service:
+            name: psicquic-view-service
+            port:
+              number: 31230
+      - path: /intact/imex
+        pathType: Prefix
+        backend:
+          service:
+            name: psicquic-view-service
+            port:
+              number: 31230
+

@@ -6,7 +6,7 @@
     <groupId>org.hupo.psi.mi.psicquic</groupId>
     <artifactId>psicquic-view</artifactId>
     <packaging>war</packaging>
-    <version>1.7.3</version>
+    <version>1.7.5</version>
 
     <name>PSI :: PSICQUIC View</name>
 
@@ -45,11 +45,11 @@
         <spring.batch.version>3.0.10.RELEASE</spring.batch.version>
         <spring.security.version>3.2.10.RELEASE</spring.security.version>
 
-        <psicquic.clustering>1.5.3</psicquic.clustering>
+        <psicquic.clustering>1.5.6</psicquic.clustering>
     </properties>
 
     <build>
-        <finalName>${service.name}-view-${project.version}</finalName>
+        <finalName>${service.name}-view</finalName>
 
         <resources>
             <resource>
@@ -367,6 +367,12 @@
             <groupId>org.springframework.batch</groupId>
             <artifactId>spring-batch-core</artifactId>
             <version>${spring.batch.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
         </dependency>
 
     </dependencies>

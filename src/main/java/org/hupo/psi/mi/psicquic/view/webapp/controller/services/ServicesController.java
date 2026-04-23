@@ -59,7 +59,6 @@ public class ServicesController extends BaseController implements java.io.Serial
     @Autowired
     private ImexPreviewLinkGenerator imexPreviewLinkGenerator;
 
-
     private List<QueryHits> services = null;
     private int activeServiceCount = 0;
 
@@ -72,6 +71,8 @@ public class ServicesController extends BaseController implements java.io.Serial
     private QueryHits selectedService;
     private String mitabUrl;
 
+
+    private final int threadTimeOut = 30;
 
     public ServicesController() {
 
@@ -89,7 +90,8 @@ public class ServicesController extends BaseController implements java.io.Serial
 
                 PsicquicSimpleClient psicquicSimpleClient;
                 psicquicSimpleClient = new PsicquicSimpleClient(service.getRestUrl());
-                psicquicSimpleClient.setReadTimeout(5000);
+                psicquicSimpleClient.setConnectionTimeout(threadTimeOut + 1000);
+                psicquicSimpleClient.setReadTimeout(threadTimeOut * 1000);
 
                 activeServiceCount++;
 
@@ -297,7 +299,6 @@ public class ServicesController extends BaseController implements java.io.Serial
     private void checkAndResumePsicquicTasks() {
 
         for (Future<?> f : runningTasks) {
-            int threadTimeOut = 5;
             try {
                 f.get(threadTimeOut, TimeUnit.SECONDS);
             } catch (InterruptedException e) {
@@ -306,7 +307,7 @@ public class ServicesController extends BaseController implements java.io.Serial
                     f.cancel(false);
                 }
             } catch (TimeoutException e) {
-                log.error("Service task stopped because of time out " + threadTimeOut + "seconds.");
+                log.error("Service task stopped because of time out " + threadTimeOut + " seconds.");
 
                 if (!f.isCancelled()) {
                     f.cancel(false);
