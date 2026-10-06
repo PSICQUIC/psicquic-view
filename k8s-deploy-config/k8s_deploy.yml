@@ -85,9 +85,12 @@ spec:
               value: "http://<PROXY_HOST>:3128"
             - name: https_proxy
               value: "http://<PROXY_HOST>:3128"
+            - name: CATALINA_OPTS
+              value: "-Xms2g -Xmx8g -XX:MaxPermSize=512m -XX:+UseConcMarkSweepGC"
             - name: JAVA_OPTS
               value: "-Dhttp.proxyHost=<PROXY_HOST> -Dhttp.proxyPort=3128 -Dhttps.proxyHost=<PROXY_HOST> -Dhttps.proxyPort=3128 \
-                      -Dsun.net.client.defaultConnectTimeout=10000 -Dsun.net.client.defaultReadTimeout=10000 -Dsun.net.http.retryPost=false"
+                      -Dsun.net.client.defaultConnectTimeout=10000 -Dsun.net.client.defaultReadTimeout=10000 -Dsun.net.http.retryPost=false \
+                      -Dcom.sun.security.enableAIAcaIssuers=true"
       volumes:
         - name: nfs-rw-volume
           nfs:
