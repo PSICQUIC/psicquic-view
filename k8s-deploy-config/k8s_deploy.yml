@@ -90,7 +90,8 @@ spec:
             - name: JAVA_OPTS
               value: "-Dhttp.proxyHost=<PROXY_HOST> -Dhttp.proxyPort=3128 -Dhttps.proxyHost=<PROXY_HOST> -Dhttps.proxyPort=3128 \
                       -Dsun.net.client.defaultConnectTimeout=10000 -Dsun.net.client.defaultReadTimeout=10000 -Dsun.net.http.retryPost=false \
-                      -Dcom.sun.security.enableAIAcaIssuers=true"
+                      -Dcom.sun.security.enableAIAcaIssuers=true \
+                      -Dcom.sun.security.allowedAIALocations=any"
       volumes:
         - name: nfs-rw-volume
           nfs:
